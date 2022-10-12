@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierConstruct.Blazor", "CarrierConstruct.Blazor\CarrierConstruct.Blazor.csproj", "{7B5C79C8-0F23-497D-B10C-733873138802}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierConstruct.API", "CarrierConstruct.API\CarrierConstruct.API.csproj", "{57D6AAA3-C154-4A6F-94DE-F87F437E4571}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B5C79C8-0F23-497D-B10C-733873138802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B5C79C8-0F23-497D-B10C-733873138802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B5C79C8-0F23-497D-B10C-733873138802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B5C79C8-0F23-497D-B10C-733873138802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57D6AAA3-C154-4A6F-94DE-F87F437E4571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57D6AAA3-C154-4A6F-94DE-F87F437E4571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57D6AAA3-C154-4A6F-94DE-F87F437E4571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57D6AAA3-C154-4A6F-94DE-F87F437E4571}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81A1F4FA-1AED-45F8-96E6-55FC268DFE39}
+	EndGlobalSection
+EndGlobal
