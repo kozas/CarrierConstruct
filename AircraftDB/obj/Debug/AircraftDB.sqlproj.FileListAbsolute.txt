@@ -1,0 +1,10 @@
+C:\Repositories\CarrierConstruct\AircraftDB\bin\Debug\AircraftDB.dacpac
+C:\Repositories\CarrierConstruct\AircraftDB\bin\Debug\AircraftDB.dll
+C:\Repositories\CarrierConstruct\AircraftDB\bin\Debug\AircraftDB.pdb
+C:\Repositories\CarrierConstruct\AircraftDB\obj\Debug\AircraftDB.sqlproj.AssemblyReference.cache
+C:\Repositories\CarrierConstruct\AircraftDB\obj\Debug\Model.xml
+C:\Repositories\CarrierConstruct\AircraftDB\obj\Debug\refactor.xml
+C:\Repositories\CarrierConstruct\AircraftDB\obj\Debug\postdeploy.sql
+C:\Repositories\CarrierConstruct\AircraftDB\obj\Debug\predeploy.sql
+C:\Repositories\CarrierConstruct\AircraftDB\obj\Debug\AircraftDB.dll
+C:\Repositories\CarrierConstruct\AircraftDB\obj\Debug\AircraftDB.pdb

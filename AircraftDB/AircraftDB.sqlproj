@@ -56,5 +56,19 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\StoredProcedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Aircraft.sql" />
+    <Build Include="dbo\StoredProcedures\spAircraft_GetAll.sql" />
+    <Build Include="dbo\StoredProcedures\spAircraft_Get.sql" />
+    <Build Include="dbo\StoredProcedures\spAircraft_Delete.sql" />
+    <Build Include="dbo\StoredProcedures\spAircraft_Insert.sql" />
+    <Build Include="dbo\StoredProcedures\spAircraft_Update.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="AircraftDB.refactorlog" />
   </ItemGroup>
 </Project>
