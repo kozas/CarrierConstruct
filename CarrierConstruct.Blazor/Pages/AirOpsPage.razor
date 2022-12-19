@@ -6,7 +6,7 @@
 <FlightDeckComponent @ref="flightDeckComponent"/>
 
 <HangarComponent @ref="hangarComponent" 
-                 OnAircraftOrderedToFlightDeck="MoveAircraftToFlightDeck"/>
+                 OnAircraftOrderedToFlightDeck="TransferAircraftViaElevator"/>
 
 <div class="d-flex">
     @foreach (var elevator in aircraftElevators)

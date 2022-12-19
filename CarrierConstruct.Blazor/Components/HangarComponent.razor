@@ -5,9 +5,8 @@
     {
         <div>
             <MudText Typo="Typo.body1">@aircraft.Name</MudText>
-            @*<MudButton @onclick="(() => SendAircraftToFlightDeck(aircraft))">Send to Flight Deck</MudButton>*@
             <MudButton @onclick="(args) => OrderAircraftToFlightDeck(args, aircraft)">Send to Flight Deck</MudButton>
         </div>
     }
-
+    
 </MudPaper>

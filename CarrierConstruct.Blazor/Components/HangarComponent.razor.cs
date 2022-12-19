@@ -1,6 +1,8 @@
-﻿using CarrierConstruct.Blazor.Interfaces;
+﻿using CarrierConstruct.Blazor.Enums;
+using CarrierConstruct.Blazor.Interfaces;
 using CarrierConstruct.Blazor.Models;
 using CarrierConstruct.Blazor.Models.Aircraft;
+using CarrierConstruct.Blazor.Models.Requests;
 using CarrierConstruct.Blazor.Models.ShipSystems;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -11,9 +13,11 @@ namespace CarrierConstruct.Blazor.Components
     public partial class HangarComponent
     {
         [Parameter]
-        public EventCallback<IAircraft> OnAircraftOrderedToFlightDeck { get; set; }
+        public EventCallback<TransferAircraftViaElevatorRequest> OnAircraftOrderedToFlightDeck { get; set; }
 
         public List<IAircraft> AircraftInHangar;
+
+        private List<IAircraft> selectedAircraft;
 
         protected override void OnInitialized()
         {
@@ -27,8 +31,19 @@ namespace CarrierConstruct.Blazor.Components
 
         private async Task OrderAircraftToFlightDeck(MouseEventArgs e, IAircraft aircraft)
         {
-            // callback to air ops page
-            await OnAircraftOrderedToFlightDeck.InvokeAsync(aircraft);
+            AircraftInHangar.Remove(aircraft);
+
+            var aircraftList = new List<IAircraft>();
+            aircraftList.Add(aircraft);
+
+            var transferRequest = new TransferAircraftViaElevatorRequest(aircraftList, ElevatorLocation.Hangar, ElevatorLocation.FlightDeck);
+
+            await OnAircraftOrderedToFlightDeck.InvokeAsync(transferRequest);
         }
+
+        //private void SelectAircraft(ChangeEventArgs e, IAircraft aircraft)
+        //{
+
+        //}
     }
 }
