@@ -1,6 +1,4 @@
-﻿<MudText Typo="Typo.h4">Air Ops</MudText>
-
-<div class="d-flex">
+﻿@*<div class="d-flex">
     @foreach (var elevator in AircraftElevators)
     {
         <MudPaper Class="pa-6 ma-6" Elevation="3">
@@ -22,13 +20,13 @@
             }
         </MudPaper>
     }
-</div>
+</div>*@
     
 
 <MudPaper Width="300px">
-    <MudText Typo="Typo.h6">Hangar</MudText>
+    <MudText Typo="Typo.h6">Flight Deck</MudText>
     <MudList Clickable="true">
-        @foreach (var aircraft in AircraftInHangar)
+        @foreach (var aircraft in AircraftOnFlightDeck)
         {
             <MudListItem Text="@aircraft.Name"/>
         }

@@ -1,0 +1,36 @@
+﻿@page "/"
+@using CarrierConstruct.Blazor.Components
+
+<MudText Typo="Typo.h4">Air Ops</MudText>
+
+<FlightDeckComponent @ref="flightDeckComponent"/>
+
+<HangarComponent @ref="hangarComponent" 
+                 OnAircraftOrderedToFlightDeck="MoveAircraftToFlightDeck"/>
+
+<div class="d-flex">
+    @foreach (var elevator in aircraftElevators)
+    {
+        <MudPaper Class="pa-6 ma-6" Elevation="3">
+            <MudText Typo="Typo.subtitle2">Elevator @elevator.ElevatorNumber:</MudText>
+            <MudText Typo="Typo.subtitle2">Location:</MudText>
+            <MudText Typo="Typo.body1">@elevator.Location</MudText>
+            
+            <MudText Typo="Typo.subtitle2">Aircraft:</MudText>
+            @if (elevator.AircraftOnElevator == null)
+            {
+                <MudText Typo="Typo.body1">None</MudText>
+            }
+            else
+            {
+                @foreach (var aircraft in elevator.AircraftOnElevator)
+                {
+                    <MudText Typo="Typo.body1">@aircraft.Name</MudText>
+                }
+            }
+        </MudPaper>
+    }
+</div>
+
+@*<MudButton @onclick="MoveAircraftToElevator">MOVE TO ELEV.</MudButton>*@
+

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierConstruct.Blazor", "CarrierConstruct.Blazor\CarrierConstruct.Blazor.csproj", "{7B5C79C8-0F23-497D-B10C-733873138802}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierConstruct.API", "CarrierConstruct.API\CarrierConstruct.API.csproj", "{57D6AAA3-C154-4A6F-94DE-F87F437E4571}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierConstruct.API", "CarrierConstruct.API\CarrierConstruct.API.csproj", "{57D6AAA3-C154-4A6F-94DE-F87F437E4571}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AircraftDB", "AircraftDB\AircraftDB.sqlproj", "{788EB58D-0C99-47EB-A52D-57585BB28B54}"
 EndProject

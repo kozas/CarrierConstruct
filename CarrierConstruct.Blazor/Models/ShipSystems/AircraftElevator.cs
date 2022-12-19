@@ -16,6 +16,7 @@ namespace CarrierConstruct.Blazor.Models.ShipSystems
             ElevatorNumber = number;
             Capacity = capacity;
             Speed = speed;
+            AircraftOnElevator = new List<IAircraft>();
         }
     }
 }
