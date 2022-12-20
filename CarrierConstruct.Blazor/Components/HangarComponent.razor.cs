@@ -1,12 +1,9 @@
 ﻿using CarrierConstruct.Blazor.Enums;
 using CarrierConstruct.Blazor.Interfaces;
-using CarrierConstruct.Blazor.Models;
 using CarrierConstruct.Blazor.Models.Aircraft;
 using CarrierConstruct.Blazor.Models.Requests;
-using CarrierConstruct.Blazor.Models.ShipSystems;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using MudBlazor;
 
 namespace CarrierConstruct.Blazor.Components
 {
@@ -17,21 +14,36 @@ namespace CarrierConstruct.Blazor.Components
 
         public List<IAircraft> AircraftInHangar;
 
-        private List<IAircraft> selectedAircraft;
-
         protected override void OnInitialized()
         {
-            // PLACEHOLDER
             AircraftInHangar = new List<IAircraft>();
 
             AircraftInHangar.Add(new Hornet(100004, 101));
             AircraftInHangar.Add(new Hornet(100005, 102));
             AircraftInHangar.Add(new Hornet(100006, 103));
+            AircraftInHangar.Add(new Hornet(100007, 201));
+            AircraftInHangar.Add(new Hornet(100008, 202));
+            AircraftInHangar.Add(new Hornet(100009, 203));
         }
 
+        //TODO: Make Generic?
+        public async Task ReceiveAircraftFromElevator(IAircraft aircraft)
+        {
+            await Task.Delay(3000);
+            AircraftInHangar.Add(aircraft);
+            StateHasChanged();
+        }
+
+        //TODO: Make Generic?
+        public async Task RemoveAircraftFromHangar(IAircraft aircraft)
+        {
+            await Task.Delay(1000);
+            AircraftInHangar.Remove(aircraft);
+        }
+
+        //TODO: Make Generic?
         private async Task OrderAircraftToFlightDeck(MouseEventArgs e, IAircraft aircraft)
         {
-            AircraftInHangar.Remove(aircraft);
 
             var aircraftList = new List<IAircraft>();
             aircraftList.Add(aircraft);
@@ -41,9 +53,6 @@ namespace CarrierConstruct.Blazor.Components
             await OnAircraftOrderedToFlightDeck.InvokeAsync(transferRequest);
         }
 
-        //private void SelectAircraft(ChangeEventArgs e, IAircraft aircraft)
-        //{
-
-        //}
+        
     }
 }

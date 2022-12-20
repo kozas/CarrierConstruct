@@ -3,9 +3,17 @@
 
     @foreach (var aircraft in AircraftInHangar)
     {
-        <div>
-            <MudText Typo="Typo.body1">@aircraft.Name</MudText>
-            <MudButton @onclick="(args) => OrderAircraftToFlightDeck(args, aircraft)">Send to Flight Deck</MudButton>
+        <div class="pa-4">
+            <div class="d-flex">
+                <MudText Typo="Typo.body2">@aircraft.Designation</MudText>
+                <MudText Typo="Typo.body2">@aircraft.Name</MudText>
+            </div>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       FullWidth="true"
+                       @onclick="(args) => OrderAircraftToFlightDeck(args, aircraft)">
+                Send to Flight Deck
+            </MudButton>
         </div>
     }
     

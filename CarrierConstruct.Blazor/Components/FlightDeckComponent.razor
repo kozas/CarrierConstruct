@@ -1,34 +1,20 @@
-﻿@*<div class="d-flex">
-    @foreach (var elevator in AircraftElevators)
-    {
-        <MudPaper Class="pa-6 ma-6" Elevation="3">
-            <MudText Typo="Typo.subtitle2">Elevator @elevator.ElevatorNumber:</MudText>
-            <MudText Typo="Typo.subtitle2">Location:</MudText>
-            <MudText Typo="Typo.body1">@elevator.Location</MudText>
-            
-            <MudText Typo="Typo.subtitle2">Aircraft:</MudText>
-            @if (elevator.AircraftOnElevator == null)
-            {
-                <MudText Typo="Typo.body1">None</MudText>
-            }
-            else
-            {
-                @foreach (var aircraft in elevator.AircraftOnElevator)
-                {
-                    <MudText Typo="Typo.body1">@aircraft.Name</MudText>
-                }
-            }
-        </MudPaper>
-    }
-</div>*@
-    
-
-<MudPaper Width="300px">
+﻿<MudPaper Width="300px">
     <MudText Typo="Typo.h6">Flight Deck</MudText>
     <MudList Clickable="true">
         @foreach (var aircraft in AircraftOnFlightDeck)
         {
-            <MudListItem Text="@aircraft.Name"/>
+            <div class="pa-4">
+                <div class="d-flex">
+                    <MudText Typo="Typo.body2">@aircraft.Designation</MudText>
+                    <MudText Typo="Typo.body2">@aircraft.Name</MudText>
+                </div>
+            </div>
+            @*<MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       FullWidth="true"
+                       @onclick="(args) => OrderAircraftToHangar(args, aircraft)">
+                Send to Hangar
+            </MudButton>*@
         }
     </MudList>
 </MudPaper>

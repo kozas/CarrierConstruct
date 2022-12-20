@@ -25,6 +25,12 @@ namespace CarrierConstruct.Blazor.Models.ShipSystems
             AircraftOnElevator?.Add(aircraft);
         }
 
+        public async Task UnloadAircraftFromElevator(IAircraft aircraft)
+        {
+            await Task.Delay(3000);
+            AircraftOnElevator?.Remove(aircraft);
+        }
+
         public async Task TravelToLocation(ElevatorLocation location)
         {
             if (location == Location)

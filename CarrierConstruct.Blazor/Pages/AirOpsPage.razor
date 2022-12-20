@@ -1,36 +1,43 @@
 ﻿@page "/"
 @using CarrierConstruct.Blazor.Components
 
-<MudText Typo="Typo.h4">Air Ops</MudText>
+<MudContainer>
+    <MudText Typo="Typo.h4">Air Ops</MudText>
 
-<FlightDeckComponent @ref="flightDeckComponent"/>
+    <div class="d-flex">
+        @*<FlightDeckComponent @ref="flightDeckComponent"
+                             OnAircraftOrderedToHangar="TransferAircraftViaElevator"/>*@
+        
+        <FlightDeckComponent @ref="flightDeckComponent"/>
 
-<HangarComponent @ref="hangarComponent" 
-                 OnAircraftOrderedToFlightDeck="TransferAircraftViaElevator"/>
+        <HangarComponent @ref="hangarComponent" 
+                         OnAircraftOrderedToFlightDeck="TransferAircraftViaElevator"/>
+    </div>
 
-<div class="d-flex">
-    @foreach (var elevator in aircraftElevators)
-    {
-        <MudPaper Class="pa-6 ma-6" Elevation="3">
-            <MudText Typo="Typo.subtitle2">Elevator @elevator.ElevatorNumber:</MudText>
-            <MudText Typo="Typo.subtitle2">Location:</MudText>
-            <MudText Typo="Typo.body1">@elevator.Location</MudText>
-            
-            <MudText Typo="Typo.subtitle2">Aircraft:</MudText>
-            @if (elevator.AircraftOnElevator == null)
-            {
-                <MudText Typo="Typo.body1">None</MudText>
-            }
-            else
-            {
-                @foreach (var aircraft in elevator.AircraftOnElevator)
+    <div class="d-flex">
+        @foreach (var elevator in aircraftElevators)
+        {
+            <MudPaper Class="pa-6 ma-6" Elevation="3">
+                <MudText Typo="Typo.subtitle2">Elevator @elevator.ElevatorNumber</MudText>
+                <div class="d-flex">
+                    <MudText Typo="Typo.subtitle2">Location:</MudText>
+                    <MudText Typo="Typo.body1">@elevator.Location</MudText>
+                </div>
+                <MudText Typo="Typo.subtitle2">Aircraft:</MudText>
+                @if (elevator.AircraftOnElevator == null)
                 {
-                    <MudText Typo="Typo.body1">@aircraft.Name</MudText>
+                    <MudText Typo="Typo.body1">None</MudText>
                 }
-            }
-        </MudPaper>
-    }
-</div>
+                else
+                {
+                    @foreach (var aircraft in elevator.AircraftOnElevator)
+                    {
+                        <MudText Typo="Typo.body1">@aircraft.Name</MudText>
+                    }
+                }
+            </MudPaper>
+        }
+    </div>
+</MudContainer>
 
-@*<MudButton @onclick="MoveAircraftToElevator">MOVE TO ELEV.</MudButton>*@
 

@@ -10,7 +10,10 @@ namespace CarrierConstruct.Blazor.Pages
     public partial class AirOpsPage
     {
         [Parameter]
-        public EventCallback<IAircraft> OnAircraftSentToFlightDeck { get; set; }
+        public EventCallback<List<IAircraft>> OnAircraftArrivedAtFlightDeck { get; set; }
+
+        [Parameter]
+        public EventCallback<List<IAircraft>> OnAircraftArrivedAtHangar { get; set; }
 
         private FlightDeckComponent flightDeckComponent;
         private HangarComponent hangarComponent;
@@ -27,28 +30,68 @@ namespace CarrierConstruct.Blazor.Pages
             };
         }
 
-        //private void MoveAircraftToFlightDeck(IAircraft aircraft)
-        //{
-        //    aircraftElevators[0].AircraftOnElevator.Add(aircraft);
-
-        //    StateHasChanged();
-        //}
-
         private async void TransferAircraftViaElevator(TransferAircraftViaElevatorRequest request)
         {
-            //TODO: Determine best elevator 
-            var selectedElevator = aircraftElevators[0];
+            var selectedElevator = DetermineBestElevator(request);
+            if (selectedElevator is null)
+            {
+                return;
+                //TODO: Error Handling
+            }
 
             await selectedElevator.TravelToLocation(request.Origin);
+            StateHasChanged();
 
             foreach (var aircraft in request.AircraftList)
             {
+                switch (request.Origin)
+                {
+                    case ElevatorLocation.Hangar:
+                        await hangarComponent.RemoveAircraftFromHangar(aircraft);
+                        break;
+                    case ElevatorLocation.FlightDeck:
+                        await flightDeckComponent.RemoveAircraftFromFlightDeck(aircraft);
+                        break;
+                }
+
                 await selectedElevator.LoadAircraftOnElevator(aircraft);
                 StateHasChanged();
             }
 
             await selectedElevator.TravelToLocation(request.Destination);
             StateHasChanged();
+
+            foreach (var aircraft in request.AircraftList)
+            {
+                switch (selectedElevator.Location)
+                {
+                    case ElevatorLocation.Hangar:
+                        await hangarComponent.ReceiveAircraftFromElevator(aircraft);
+                        break;
+                    case ElevatorLocation.FlightDeck:
+                        await flightDeckComponent.ReceiveAircraftFromElevator(aircraft);
+                        break;
+                }
+
+                await selectedElevator.UnloadAircraftFromElevator(aircraft);
+                StateHasChanged();
+            }
+        }
+
+        private AircraftElevator? DetermineBestElevator(TransferAircraftViaElevatorRequest request)
+        {
+            //TODO: Improve logic
+            //TODO: Elevator capacity logic
+
+            foreach (var elevator in aircraftElevators)
+            {
+                if (elevator.Location != ElevatorLocation.InTransit && elevator.AircraftOnElevator?.Count == 0)
+                {
+                    return elevator;
+                }
+            }
+
+            return null;
         }
     }
 
