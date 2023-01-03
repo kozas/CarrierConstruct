@@ -4,15 +4,9 @@
 <MudContainer>
     <MudText Typo="Typo.h4">Air Ops</MudText>
 
-    <div class="d-flex">
-        @*<FlightDeckComponent @ref="flightDeckComponent"
-                             OnAircraftOrderedToHangar="TransferAircraftViaElevator"/>*@
-        
-        <FlightDeckComponent @ref="flightDeckComponent"/>
-
-        <HangarComponent @ref="hangarComponent" 
-                         OnAircraftOrderedToFlightDeck="TransferAircraftViaElevator"/>
-    </div>
+    <FlightDeckComponent @ref="flightDeckComponent"/>
+    
+    <MudDivider Class="my-4" />
 
     <div class="d-flex">
         @foreach (var elevator in aircraftElevators)
@@ -38,6 +32,13 @@
             </MudPaper>
         }
     </div>
+        
+    <MudDivider Class="my-4" />
+
+    <HangarComponent @ref="hangarComponent" 
+                             OnAircraftOrderedToFlightDeck="TransferAircraftViaElevator"/>
+        
+           
 </MudContainer>
 
 

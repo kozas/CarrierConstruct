@@ -9,6 +9,8 @@ namespace CarrierConstruct.Blazor.Pages
 {
     public partial class AirOpsPage
     {
+        [Inject] private AppState AppState { get; set; }
+
         [Parameter]
         public EventCallback<List<IAircraft>> OnAircraftArrivedAtFlightDeck { get; set; }
 
@@ -22,12 +24,19 @@ namespace CarrierConstruct.Blazor.Pages
 
         protected override void OnInitialized()
         {
+            //AppState.OnAircraftStatusChanged += StateHasChanged;
+
             aircraftElevators = new List<AircraftElevator>
             {
                 new AircraftElevator(1, 1, 4),
                 new AircraftElevator(2, 1, 4),
                 new AircraftElevator(3, 1, 4)
             };
+        }
+
+        public void Dispose()
+        {
+            //AppState.OnAircraftStatusChanged -= StateHasChanged;
         }
 
         private async void TransferAircraftViaElevator(TransferAircraftViaElevatorRequest request)
@@ -44,6 +53,10 @@ namespace CarrierConstruct.Blazor.Pages
 
             foreach (var aircraft in request.AircraftList)
             {
+                aircraft.SetStatus(AircraftStatus.InTransit);
+
+                //AppState.SetAircraftStatus(AircraftStatus.InTransit);
+
                 switch (request.Origin)
                 {
                     case ElevatorLocation.Hangar:
@@ -74,7 +87,9 @@ namespace CarrierConstruct.Blazor.Pages
                 }
 
                 await selectedElevator.UnloadAircraftFromElevator(aircraft);
-                StateHasChanged();
+                aircraft.SetStatus(AircraftStatus.Idle);
+                //AppState.SetAircraftStatus(AircraftStatus.Idle);
+
             }
         }
 

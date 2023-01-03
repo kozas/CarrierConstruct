@@ -26,7 +26,7 @@ namespace CarrierConstruct.Blazor.Components
         //TODO: Make Generic?
         public async Task ReceiveAircraftFromElevator(IAircraft aircraft)
         {
-            await Task.Delay(3000);
+            //await Task.Delay(3000);
             AircraftOnFlightDeck.Add(aircraft);
             StateHasChanged();
         }
@@ -34,8 +34,9 @@ namespace CarrierConstruct.Blazor.Components
         //TODO: Make Generic?
         public async Task RemoveAircraftFromFlightDeck(IAircraft aircraft)
         {
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
             AircraftOnFlightDeck.Remove(aircraft);
+            StateHasChanged();
         }
 
         //TODO: Make Generic?

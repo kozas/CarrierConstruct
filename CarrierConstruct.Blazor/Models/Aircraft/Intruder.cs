@@ -1,9 +1,11 @@
-﻿using CarrierConstruct.Blazor.Interfaces;
+﻿using CarrierConstruct.Blazor.Enums;
+using CarrierConstruct.Blazor.Interfaces;
 
 namespace CarrierConstruct.Blazor.Models
 {
     public class Intruder : IAircraft
     {
+        public AircraftStatus Status { get; set; }
         public int Serial { get; }
         public int Modex { get; }
 
