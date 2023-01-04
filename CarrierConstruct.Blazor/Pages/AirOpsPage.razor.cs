@@ -56,7 +56,6 @@ namespace CarrierConstruct.Blazor.Pages
             }
 
             // Execute orders for assigned elevators
-
             foreach (var elevator in assignedElevators)
             {
                 // TODO: Await or no await?
@@ -86,48 +85,48 @@ namespace CarrierConstruct.Blazor.Pages
                     StateHasChanged();
                 }
 
-                //await elevator.TravelToLocation(request.Destination);
-                //StateHasChanged();
+                await elevator.TravelToLocation(request.Destination);
+                StateHasChanged();
+
+                //todo: make this not stupid
+                while(elevator.AircraftOnElevator.Count > 0)
+                {
+                    var aircraft = elevator.AircraftOnElevator[0];
+
+                    switch (elevator.Location)
+                    {
+                        case ElevatorLocation.Hangar:
+                            await hangarComponent.ReceiveAircraftFromElevator(aircraft);
+                            break;
+                        case ElevatorLocation.FlightDeck:
+                            await flightDeckComponent.ReceiveAircraftFromElevator(aircraft);
+                            break;
+                    }
+
+                    await elevator.UnloadAircraftFromElevator(aircraft);
+                    aircraft.SetStatus(AircraftStatus.Idle);
+                }
             }
             
-
-            
-
-            //foreach (var aircraft in request.AircraftList)
-            //{
-            //    switch (selectedElevator.Location)
-            //    {
-            //        case ElevatorLocation.Hangar:
-            //            await hangarComponent.ReceiveAircraftFromElevator(aircraft);
-            //            break;
-            //        case ElevatorLocation.FlightDeck:
-            //            await flightDeckComponent.ReceiveAircraftFromElevator(aircraft);
-            //            break;
-            //    }
-
-            //    await selectedElevator.UnloadAircraftFromElevator(aircraft);
-            //    aircraft.SetStatus(AircraftStatus.Idle);
-            //}
-
             hangarComponent.ClearSelectedAircraft();
             hangarComponent.SetOrderInProgress(false);
         }
 
-        private AircraftElevator? DetermineBestElevator(TransferAircraftViaElevatorRequest request)
-        {
-            //TODO: Improve logic
-            //TODO: Elevator capacity logic
+        //private AircraftElevator? DetermineBestElevator(TransferAircraftViaElevatorRequest request)
+        //{
+        //    //TODO: Improve logic
+        //    //TODO: Elevator capacity logic
 
-            foreach (var elevator in aircraftElevators)
-            {
-                if (elevator.Location != ElevatorLocation.InTransit && elevator.AircraftOnElevator?.Count == 0)
-                {
-                    return elevator;
-                }
-            }
+        //    foreach (var elevator in aircraftElevators)
+        //    {
+        //        if (elevator.Location != ElevatorLocation.InTransit && elevator.AircraftOnElevator?.Count == 0)
+        //        {
+        //            return elevator;
+        //        }
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
     }
 
 }
