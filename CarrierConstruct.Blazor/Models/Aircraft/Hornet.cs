@@ -12,6 +12,7 @@ namespace CarrierConstruct.Blazor.Models.Aircraft
         public string Manufacturer => "McDonnell Douglas";
         public string Designation => "F/A-18";
         public string Name => "Hornet";
+        public AircraftRole Role => AircraftRole.MultiRole;
 
         public Hornet(int serial, int modex)
         {

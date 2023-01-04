@@ -12,6 +12,7 @@ namespace CarrierConstruct.Blazor.Models
         public string Manufacturer => "Grumman";
         public string Designation => "A-6";
         public string Name => "Intruder";
+        public AircraftRole Role => AircraftRole.Attack;
 
         public Intruder(int serial, int modex)
         {

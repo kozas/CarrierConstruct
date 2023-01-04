@@ -5,70 +5,83 @@ using CarrierConstruct.Blazor.Models.Requests;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace CarrierConstruct.Blazor.Components
+namespace CarrierConstruct.Blazor.Components;
+
+public partial class HangarComponent
 {
-    public partial class HangarComponent
+    public List<IAircraft> AircraftInHangar;
+    private List<IAircraft> selectedAircraft;
+    private bool orderInProgress = false;
+
+    [Parameter]
+    public EventCallback<TransferAircraftViaElevatorRequest> OnAircraftOrderedToFlightDeck { get; set; }
+
+    //TODO: Make Generic?
+    public async Task ReceiveAircraftFromElevator(IAircraft aircraft)
     {
-        [Parameter]
-        public EventCallback<TransferAircraftViaElevatorRequest> OnAircraftOrderedToFlightDeck { get; set; }
+        AircraftInHangar.Add(aircraft);
+        StateHasChanged();
+    }
 
-        public List<IAircraft> AircraftInHangar;
-        private List<IAircraft> selectedAircraft;
+    //TODO: Make Generic?
+    public async Task RemoveAircraftFromHangar(IAircraft aircraft)
+    {
+        AircraftInHangar.Remove(aircraft);
+        StateHasChanged();
+    }
 
-        protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
+    {
+        AircraftInHangar = new List<IAircraft>();
+        selectedAircraft = new List<IAircraft>();
+
+        await LoadAircraftList();
+    }
+
+    private async Task OrderSelectedAircraftToFlightDeck()
+    {
+        if (selectedAircraft.Count == 0)
         {
-            AircraftInHangar = new List<IAircraft>();
-            selectedAircraft = new List<IAircraft>();
-
-            await LoadAircraftList();
+            return;
         }
 
-        //TODO: Make Generic?
-        public async Task ReceiveAircraftFromElevator(IAircraft aircraft)
+        var transferRequest = new TransferAircraftViaElevatorRequest(selectedAircraft, ElevatorLocation.Hangar, ElevatorLocation.FlightDeck);
+        await OnAircraftOrderedToFlightDeck.InvokeAsync(transferRequest);
+
+        //selectedAircraft.Clear();
+    }
+
+    private void SelectAircraft(MouseEventArgs e, IAircraft aircraft)
+    {
+        if (selectedAircraft.Contains(aircraft))
         {
-            //await Task.Delay(3000);
-            AircraftInHangar.Add(aircraft);
-            StateHasChanged();
+            selectedAircraft.Remove(aircraft);
         }
-
-        //TODO: Make Generic?
-        public async Task RemoveAircraftFromHangar(IAircraft aircraft)
+        else
         {
-            //await Task.Delay(1000);
-            AircraftInHangar.Remove(aircraft);
-            StateHasChanged();
+            selectedAircraft.Add(aircraft);
         }
+    }
 
-        //TODO: Make Generic?
-        private async Task OrderSelectedAircraftToFlightDeck()
-        {
-            var transferRequest = new TransferAircraftViaElevatorRequest(selectedAircraft, ElevatorLocation.Hangar, ElevatorLocation.FlightDeck);
+    private async Task LoadAircraftList()
+    {
+        AircraftInHangar.Add(new Hornet(100004, 101));
+        AircraftInHangar.Add(new Hornet(100005, 102));
+        AircraftInHangar.Add(new Hornet(100006, 103));
+        AircraftInHangar.Add(new Hornet(100007, 201));
+        AircraftInHangar.Add(new Hornet(100008, 202));
+        AircraftInHangar.Add(new Hornet(100009, 203));
+    }
 
-            await OnAircraftOrderedToFlightDeck.InvokeAsync(transferRequest);
-        }
+    public void SetOrderInProgress(bool isInProgress)
+    {
+        orderInProgress = isInProgress;
+        StateHasChanged();
+    }
 
-        private void SelectAircraft(MouseEventArgs e, IAircraft aircraft)
-        {
-            if (selectedAircraft.Contains(aircraft))
-            {
-                selectedAircraft.Remove(aircraft);
-            }
-            else
-            {
-                selectedAircraft.Add(aircraft);
-            }
-        }
-
-        private async Task LoadAircraftList()
-        {
-            AircraftInHangar.Add(new Hornet(100004, 101));
-            AircraftInHangar.Add(new Hornet(100005, 102));
-            AircraftInHangar.Add(new Hornet(100006, 103));
-            AircraftInHangar.Add(new Hornet(100007, 201));
-            AircraftInHangar.Add(new Hornet(100008, 202));
-            AircraftInHangar.Add(new Hornet(100009, 203));
-        }
-
-        
+    public void ClearSelectedAircraft()
+    {
+        selectedAircraft.Clear();
+        StateHasChanged();
     }
 }

@@ -8,6 +8,7 @@ namespace CarrierConstruct.Blazor.Models.ShipSystems
         public int ElevatorNumber { get; set; }
         public int Capacity { get; set; }
         public int Speed { get; set; }
+        public List<int>? OrderedAircraftSerials { get; set; }
         public List<IAircraft>? AircraftOnElevator { get; set; }
         public ElevatorLocation Location { get; set; } = ElevatorLocation.FlightDeck;
 
@@ -16,18 +17,19 @@ namespace CarrierConstruct.Blazor.Models.ShipSystems
             ElevatorNumber = number;
             Capacity = capacity;
             Speed = speed;
+            OrderedAircraftSerials = new List<int>();
             AircraftOnElevator = new List<IAircraft>();
         }
 
         public async Task LoadAircraftOnElevator(IAircraft aircraft)
         {
-            await Task.Delay(1000);
+            await Task.Delay(500);
             AircraftOnElevator?.Add(aircraft);
         }
 
         public async Task UnloadAircraftFromElevator(IAircraft aircraft)
         {
-            await Task.Delay(1000);
+            await Task.Delay(500);
             AircraftOnElevator?.Remove(aircraft);
         }
 

@@ -27,8 +27,17 @@
                     @foreach (var aircraft in elevator.AircraftOnElevator)
                     {
                         <MudText Typo="Typo.body1">@aircraft.Name</MudText>
+                        <MudText Typo="Typo.body1">@aircraft.Modex</MudText>
                     }
                 }
+                
+                @*TODO: Temporary*@
+                <MudText Typo="Typo.subtitle2">Assigned Serials:</MudText>
+                @foreach (var serial in elevator.OrderedAircraftSerials)
+                {
+                    <MudText Typo="Typo.body1">@serial</MudText>
+                }
+
             </MudPaper>
         }
     </div>
