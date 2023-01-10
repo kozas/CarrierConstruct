@@ -1,21 +1,11 @@
-﻿<MudPaper Width="300px">
+﻿@using CarrierConstruct.Blazor.Components.UI
+
+<MudPaper Width="300px">
     <MudText Typo="Typo.h6">Flight Deck</MudText>
     <MudList Clickable="true">
         @foreach (var aircraft in AircraftOnFlightDeck)
         {
-            <div class="pa-4">
-                <div class="d-flex">
-                    <MudText Typo="Typo.body2">@aircraft.Name</MudText>
-                    <MudText Typo="Typo.body2">@aircraft.Modex</MudText>
-                   
-                </div>
-            </div>
-            @*<MudButton Variant="Variant.Filled"
-                       Color="Color.Primary"
-                       FullWidth="true"
-                       @onclick="(args) => OrderAircraftToHangar(args, aircraft)">
-                Send to Hangar
-            </MudButton>*@
+            <AircraftCardComponent Aircraft="aircraft" />
         }
     </MudList>
 </MudPaper>

@@ -1,21 +1,29 @@
-﻿@using CarrierConstruct.Blazor.Enums
+﻿@using CarrierConstruct.Blazor.Components.UI
+@using CarrierConstruct.Blazor.Enums
 @using CarrierConstruct.Blazor.Interfaces
 @using System.Linq
+
 <MudPaper Width="300px">
     <MudText Typo="Typo.h6">Hangar</MudText>
 
     @foreach (var aircraft in AircraftInHangar)
     {
-        <MudButton Class="pa-4" OnClick="(args) => SelectAircraft(args, aircraft)" Disabled="orderInProgress">
+        <MudButton OnClick="(args) => SelectAircraft(args, aircraft)" Disabled="orderInProgress">
             <div class="d-flex">
                 @if (selectedAircraft.Contains(aircraft))
                 {
                     <MudPaper Class="mud-theme-primary">
-                        <MudIcon Icon="@Icons.Material.Filled.ArrowCircleUp" Title="Favorite" />
+                        <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Title="Favorite" />
                     </MudPaper>
                 }
-                <MudText Typo="Typo.body2">@aircraft.Name</MudText>
-                <MudText Typo="Typo.body2">@aircraft.Modex</MudText>
+                else
+                {
+                    <MudPaper Class="mud-theme-secondary">
+                        <MudIcon Icon="@Icons.Material.Filled.Circle" Title="Favorite" />
+                    </MudPaper>
+                }
+                
+                <AircraftCardComponent Aircraft="aircraft" />
             </div>
         </MudButton>
     }
@@ -25,13 +33,14 @@
                FullWidth="true"
                OnClick="OrderSelectedAircraftToFlightDeck"
                Disabled="orderInProgress || selectedAircraft.Count == 0">
-        Order Selected Aircraft to Flight Deck
+        Order to Flight Deck
     </MudButton>
     
     <div>
+        <p>Selected Aircraft:</p>
         @foreach (IAircraft a in selectedAircraft)
         {
-            <p>@a.Name</p>
+            <p>@a.Name - @a.Modex</p>
         }
     </div>
     

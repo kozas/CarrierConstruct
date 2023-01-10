@@ -23,13 +23,13 @@ namespace CarrierConstruct.Blazor.Models.ShipSystems
 
         public async Task LoadAircraftOnElevator(IAircraft aircraft)
         {
-            await Task.Delay(500);
+            await Task.Delay(800);
             AircraftOnElevator?.Add(aircraft);
         }
 
         public async Task UnloadAircraftFromElevator(IAircraft aircraft)
         {
-            await Task.Delay(500);
+            await Task.Delay(1000);
             AircraftOnElevator?.Remove(aircraft);
         }
 

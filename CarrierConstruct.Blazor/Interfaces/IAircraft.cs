@@ -11,7 +11,7 @@ namespace CarrierConstruct.Blazor.Interfaces
         public string Name { get; }
         public string FullName => Manufacturer + Designation + Name;
         public AircraftRole Role { get; }
-        protected AircraftStatus Status { get; set; }
+        public AircraftStatus Status { get; protected set; }
 
         public void SetStatus(AircraftStatus status)
         {

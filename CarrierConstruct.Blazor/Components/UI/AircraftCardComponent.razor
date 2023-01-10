@@ -1,0 +1,22 @@
+﻿@using CarrierConstruct.Blazor.Interfaces
+
+<MudPaper Elevation="3" Width="250px">
+    <MudPaper Class="d-flex justify-space-between mud-theme-primary px-4 py-2">
+        <MudText Typo="Typo.body2">@Aircraft.Designation @Aircraft.Name</MudText>
+        <MudText Typo="Typo.body2">@Aircraft.Role</MudText>
+    </MudPaper>
+
+    <MudPaper Class="pa-4">
+        <MudText Typo="Typo.body1">[ SQUADRON ] @Aircraft.Modex</MudText>
+        <MudText Typo="Typo.body1">Serial: @Aircraft.Serial</MudText>
+    </MudPaper>
+    
+    @*<MudPaper Class="px-4 py-2 mud-theme-tertiary">
+        <MudText Typo="Typo.caption">Status: @Aircraft.Status</MudText>
+    </MudPaper>*@
+</MudPaper>
+
+@code {
+    [Parameter]
+    public IAircraft Aircraft { get; set; }
+}
