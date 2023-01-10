@@ -3,45 +3,31 @@
 @using CarrierConstruct.Blazor.Interfaces
 @using System.Linq
 
-<MudPaper Width="300px">
-    <MudText Typo="Typo.h6">Hangar</MudText>
-
+<MudText Typo="Typo.h6">Hangar</MudText>
+    
+<MudPaper Class="d-flex flex-wrap" MaxWidth="1200px">
     @foreach (var aircraft in AircraftInHangar)
     {
-        <MudButton OnClick="(args) => SelectAircraft(args, aircraft)" Disabled="orderInProgress">
-            <div class="d-flex">
-                @if (selectedAircraft.Contains(aircraft))
-                {
-                    <MudPaper Class="mud-theme-primary">
-                        <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Title="Favorite" />
-                    </MudPaper>
-                }
-                else
-                {
-                    <MudPaper Class="mud-theme-secondary">
-                        <MudIcon Icon="@Icons.Material.Filled.Circle" Title="Favorite" />
-                    </MudPaper>
-                }
-                
-                <AircraftCardComponent Aircraft="aircraft" />
-            </div>
-        </MudButton>
+        <AircraftCardComponent Aircraft="aircraft" 
+                               OnAircraftCardClicked="(args) => SelectAircraft(args, aircraft)" 
+                               ClickDisabled="orderInProgress"
+                               IsSelected="selectedAircraft.Contains(aircraft)"/>
     }
-    
-    <MudButton Variant="Variant.Filled"
-               Color="Color.Primary"
-               FullWidth="true"
-               OnClick="OrderSelectedAircraftToFlightDeck"
-               Disabled="orderInProgress || selectedAircraft.Count == 0">
-        Order to Flight Deck
-    </MudButton>
-    
-    <div>
-        <p>Selected Aircraft:</p>
-        @foreach (IAircraft a in selectedAircraft)
-        {
-            <p>@a.Name - @a.Modex</p>
-        }
-    </div>
-    
 </MudPaper>
+    
+<MudButton Variant="Variant.Filled"
+           Color="Color.Primary"
+           FullWidth="true"
+           OnClick="OrderSelectedAircraftToFlightDeck"
+           Disabled="orderInProgress || selectedAircraft.Count == 0">
+    Order to Flight Deck
+</MudButton>
+    
+<div>
+    <p>Selected Aircraft:</p>
+    @foreach (IAircraft a in selectedAircraft)
+    {
+        <p>@a.Name - @a.Modex</p>
+    }
+</div>
+    

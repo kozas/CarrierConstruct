@@ -12,6 +12,15 @@
         @foreach (var elevator in aircraftElevators)
         {
             <MudPaper Class="pa-6 ma-6" Elevation="3">
+                
+                @*<MudPaper Height="40px;">
+                    @if (elevator.isLoading)
+                    {
+                        <MudProgressLinear Color="Color.Secondary" Indeterminate="true" Class="my-7"/>
+                        <MudText Typo="Typo.caption">@elevator.StatusMessage</MudText>
+                    }
+                </MudPaper> *@
+
                 <MudText Typo="Typo.subtitle2">Elevator @elevator.ElevatorNumber</MudText>
                 <div class="d-flex">
                     <MudText Typo="Typo.subtitle2">Location:</MudText>
@@ -30,7 +39,7 @@
                         <MudText Typo="Typo.body1">@aircraft.Modex</MudText>
                     }
                 }
-                
+
                 @*TODO: Temporary*@
                 <MudText Typo="Typo.subtitle2">Assigned Serials:</MudText>
                 @foreach (var serial in elevator.OrderedAircraftSerials)

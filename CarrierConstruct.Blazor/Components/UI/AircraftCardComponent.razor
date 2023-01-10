@@ -1,22 +1,58 @@
 ﻿@using CarrierConstruct.Blazor.Interfaces
 
-<MudPaper Elevation="3" Width="250px">
-    <MudPaper Class="d-flex justify-space-between mud-theme-primary px-4 py-2">
-        <MudText Typo="Typo.body2">@Aircraft.Designation @Aircraft.Name</MudText>
-        <MudText Typo="Typo.body2">@Aircraft.Role</MudText>
-    </MudPaper>
+<MudButton OnClick="HandleClick" Disabled="ClickDisabled">
+    <MudPaper Class="d-flex flex-wrap" Elevation="6">
+        
+        @*TODO: Is this the right way to handle selection?*@
+        @*TODO: Fix un-checking*@
+        @if (IsSelected)
+        {
+            <MudPaper Class="mud-theme-primary rounded-l-xl">
+                <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Title="Favorite" />
+            </MudPaper>
+        }
+        else
+        {
+            <MudPaper Class="mud-theme-secondary rounded-l-xl">
+                <MudIcon Icon="@Icons.Material.Filled.Circle" Title="Favorite" />
+            </MudPaper>
+        }
+        
+        <div class="d-block">
+            <div class="d-flex justify-space-between mud-theme-primary px-4 py-2">
+                <MudText Typo="Typo.body2">@Aircraft.Designation @Aircraft.Name</MudText>
+                <MudText Typo="Typo.body2">@Aircraft.Role</MudText>
+            </div>
 
-    <MudPaper Class="pa-4">
-        <MudText Typo="Typo.body1">[ SQUADRON ] @Aircraft.Modex</MudText>
-        <MudText Typo="Typo.body1">Serial: @Aircraft.Serial</MudText>
+            <div class="pa-4">
+                <MudText Typo="Typo.body1">[ SQUADRON ] @Aircraft.Modex</MudText>
+                <MudText Typo="Typo.body1">Serial: @Aircraft.Serial</MudText>
+            </div>
+
+            @*<MudText Typo="Typo.caption">Status: @Aircraft.Status</MudText>*@
+        </div>
+
     </MudPaper>
-    
-    @*<MudPaper Class="px-4 py-2 mud-theme-tertiary">
-        <MudText Typo="Typo.caption">Status: @Aircraft.Status</MudText>
-    </MudPaper>*@
-</MudPaper>
+</MudButton>
 
 @code {
     [Parameter]
     public IAircraft Aircraft { get; set; }
+
+    [Parameter]
+    public bool ClickDisabled { get; set; }
+
+    [Parameter]
+    public bool IsSelected {get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnAircraftCardClicked { get; set; }
+
+    //private bool isSelected;
+
+    public void HandleClick()
+    {
+        //isSelected = !isSelected;
+        OnAircraftCardClicked.InvokeAsync();
+    }
 }

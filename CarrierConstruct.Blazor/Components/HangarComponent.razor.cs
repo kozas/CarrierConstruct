@@ -76,12 +76,10 @@ public partial class HangarComponent
     public void SetOrderInProgress(bool isInProgress)
     {
         orderInProgress = isInProgress;
-        StateHasChanged();
     }
 
     public void ClearSelectedAircraft()
     {
         selectedAircraft.Clear();
-        StateHasChanged();
     }
 }

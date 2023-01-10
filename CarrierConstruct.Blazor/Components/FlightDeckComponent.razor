@@ -1,11 +1,10 @@
 ﻿@using CarrierConstruct.Blazor.Components.UI
 
-<MudPaper Width="300px">
-    <MudText Typo="Typo.h6">Flight Deck</MudText>
-    <MudList Clickable="true">
-        @foreach (var aircraft in AircraftOnFlightDeck)
-        {
-            <AircraftCardComponent Aircraft="aircraft" />
-        }
-    </MudList>
+<MudText Typo="Typo.h6">Flight Deck</MudText>
+
+<MudPaper Class="d-flex flex-wrap" MaxWidth="1200px">
+    @foreach (var aircraft in AircraftOnFlightDeck)
+    {
+        <AircraftCardComponent Aircraft="aircraft" />
+    }
 </MudPaper>

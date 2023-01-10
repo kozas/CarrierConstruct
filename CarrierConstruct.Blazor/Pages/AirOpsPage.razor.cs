@@ -11,8 +11,8 @@ public partial class AirOpsPage
 {
     private List<AircraftElevator>? aircraftElevators;
 
-    private FlightDeckComponent flightDeckComponent;
-    private HangarComponent hangarComponent;
+    private FlightDeckComponent? flightDeckComponent;
+    private HangarComponent? hangarComponent;
 
     [Parameter]
     public EventCallback<List<IAircraft>> OnAircraftArrivedAtFlightDeck { get; set; }
@@ -21,7 +21,7 @@ public partial class AirOpsPage
     public EventCallback<List<IAircraft>> OnAircraftArrivedAtHangar { get; set; }
 
     [Inject]
-    private AppState AppState { get; set; }
+    private AppState? AppState { get; set; }
 
     protected override void OnInitialized()
     {
@@ -57,7 +57,6 @@ public partial class AirOpsPage
             }
         }
 
-        //TODO: Execute simultaneously
         // Execute orders for assigned elevators
         foreach (var elevator in assignedElevators)
         {
@@ -65,10 +64,11 @@ public partial class AirOpsPage
             tasks.Add(response);
         }
 
+        // Wait for all elevators to complete their orders
         await Task.WhenAll(tasks);
-
         hangarComponent.ClearSelectedAircraft();
         hangarComponent.SetOrderInProgress(false);
+        await InvokeAsync(() => StateHasChanged());
     }
 
     private async Task TransferAircraftViaElevator(TransferAircraftViaElevatorRequest request, AircraftElevator elevator)
