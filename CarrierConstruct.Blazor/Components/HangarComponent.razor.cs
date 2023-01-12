@@ -1,5 +1,6 @@
 ﻿using CarrierConstruct.Blazor.Enums;
 using CarrierConstruct.Blazor.Interfaces;
+using CarrierConstruct.Blazor.Models;
 using CarrierConstruct.Blazor.Models.Aircraft;
 using CarrierConstruct.Blazor.Models.Requests;
 using Microsoft.AspNetCore.Components;
@@ -71,6 +72,13 @@ public partial class HangarComponent
         AircraftInHangar.Add(new Hornet(100007, 201));
         AircraftInHangar.Add(new Hornet(100008, 202));
         AircraftInHangar.Add(new Hornet(100009, 203));
+        AircraftInHangar.Add(new Intruder(100010, 301));
+        AircraftInHangar.Add(new Intruder(100011, 302));
+        AircraftInHangar.Add(new Hornet(100013, 401));
+        AircraftInHangar.Add(new Hornet(100014, 402));
+        AircraftInHangar.Add(new Hornet(100015, 403));
+        AircraftInHangar.Add(new Hornet(100016, 404));
+        AircraftInHangar.Add(new Hornet(100017, 405));
     }
 
     public void SetOrderInProgress(bool isInProgress)

@@ -41,34 +41,70 @@ public partial class AirOpsPage
         var assignedElevators = new List<AircraftElevator>();
         var tasks = new List<Task>();
 
-        // Assign elevators and their aircraft
-        foreach (var elevator in aircraftElevators)
-        {
-            while (elevator.OrderedAircraftSerials.Count < elevator.Capacity && assignedElevatorSpaces < request.AircraftList.Count)
-            {
-                elevator.OrderedAircraftSerials.Add(request.AircraftList[assignedElevatorSpaces].Serial);
-                assignedElevatorSpaces++;
-                StateHasChanged();
-            }
 
-            if (elevator.OrderedAircraftSerials.Count > 0)
+        while (assignedElevatorSpaces < request.AircraftList.Count)
+        {
+            foreach (var elevator in aircraftElevators)
             {
-                assignedElevators.Add(elevator);
+                
+                for (var i = 0; i < elevator.Capacity; i++)
+                {
+                    if (assignedElevatorSpaces == request.AircraftList.Count)
+                    {
+                        continue;
+                    }
+
+                    elevator.OrderedAircraftSerials.Add(request.AircraftList[assignedElevatorSpaces].Serial);
+                    assignedElevatorSpaces++;
+                    StateHasChanged();
+                }
+
+                if (elevator.OrderedAircraftSerials.Count > 0 && !assignedElevators.Contains(elevator))
+                {
+                    assignedElevators.Add(elevator);
+                }
             }
         }
 
-        // Execute orders for assigned elevators
-        foreach (var elevator in assignedElevators)
-        {
-            var response = TransferAircraftViaElevator(request, elevator);
-            tasks.Add(response);
-        }
 
-        // Wait for all elevators to complete their orders
-        await Task.WhenAll(tasks);
-        hangarComponent.ClearSelectedAircraft();
-        hangarComponent.SetOrderInProgress(false);
-        await InvokeAsync(() => StateHasChanged());
+
+
+
+
+
+        //// Assign elevators and their aircraft
+        //foreach (var elevator in aircraftElevators)
+        //{
+        //    while (elevator.OrderedAircraftSerials.Count < elevator.Capacity && assignedElevatorSpaces < request.AircraftList.Count)
+        //    {
+        //        elevator.OrderedAircraftSerials.Add(request.AircraftList[assignedElevatorSpaces].Serial);
+        //        assignedElevatorSpaces++;
+        //        StateHasChanged();
+        //    }
+
+        //    //if (assignedElevatorSpaces < request.AircraftList.Count)
+        //    //{
+
+        //    //}
+
+        //    if (elevator.OrderedAircraftSerials.Count > 0)
+        //    {
+        //        assignedElevators.Add(elevator);
+        //    }
+        //}
+
+        //// Execute orders for assigned elevators
+        //foreach (var elevator in assignedElevators)
+        //{
+        //    var response = TransferAircraftViaElevator(request, elevator);
+        //    tasks.Add(response);
+        //}
+
+        //// Wait for all elevators to complete their orders
+        //await Task.WhenAll(tasks);
+        //hangarComponent.ClearSelectedAircraft();
+        //hangarComponent.SetOrderInProgress(false);
+        //await InvokeAsync(() => StateHasChanged());
     }
 
     private async Task TransferAircraftViaElevator(TransferAircraftViaElevatorRequest request, AircraftElevator elevator)
