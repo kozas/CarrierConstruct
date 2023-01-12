@@ -37,25 +37,24 @@ public partial class AirOpsPage
     {
         hangarComponent.SetOrderInProgress(true);
 
-        var assignedElevatorSpaces = 0;
+        var assignedAircraftSerials = 0;
         var assignedElevators = new List<AircraftElevator>();
         var tasks = new List<Task>();
 
-
-        while (assignedElevatorSpaces < request.AircraftList.Count)
+        //// Assign elevators and their aircraft
+        while (assignedAircraftSerials < request.AircraftList.Count)
         {
             foreach (var elevator in aircraftElevators)
             {
-                
                 for (var i = 0; i < elevator.Capacity; i++)
                 {
-                    if (assignedElevatorSpaces == request.AircraftList.Count)
+                    if (assignedAircraftSerials == request.AircraftList.Count)
                     {
                         continue;
                     }
 
-                    elevator.OrderedAircraftSerials.Add(request.AircraftList[assignedElevatorSpaces].Serial);
-                    assignedElevatorSpaces++;
+                    elevator.OrderedAircraftSerials.Add(request.AircraftList[assignedAircraftSerials].Serial);
+                    assignedAircraftSerials++;
                     StateHasChanged();
                 }
 
@@ -66,97 +65,77 @@ public partial class AirOpsPage
             }
         }
 
+        // Execute orders for assigned elevators
+        foreach (var elevator in assignedElevators)
+        {
+            var response = TransferAircraftViaElevator(request, elevator);
+            tasks.Add(response);
+        }
 
-
-
-
-
-
-        //// Assign elevators and their aircraft
-        //foreach (var elevator in aircraftElevators)
-        //{
-        //    while (elevator.OrderedAircraftSerials.Count < elevator.Capacity && assignedElevatorSpaces < request.AircraftList.Count)
-        //    {
-        //        elevator.OrderedAircraftSerials.Add(request.AircraftList[assignedElevatorSpaces].Serial);
-        //        assignedElevatorSpaces++;
-        //        StateHasChanged();
-        //    }
-
-        //    //if (assignedElevatorSpaces < request.AircraftList.Count)
-        //    //{
-
-        //    //}
-
-        //    if (elevator.OrderedAircraftSerials.Count > 0)
-        //    {
-        //        assignedElevators.Add(elevator);
-        //    }
-        //}
-
-        //// Execute orders for assigned elevators
-        //foreach (var elevator in assignedElevators)
-        //{
-        //    var response = TransferAircraftViaElevator(request, elevator);
-        //    tasks.Add(response);
-        //}
-
-        //// Wait for all elevators to complete their orders
-        //await Task.WhenAll(tasks);
-        //hangarComponent.ClearSelectedAircraft();
-        //hangarComponent.SetOrderInProgress(false);
-        //await InvokeAsync(() => StateHasChanged());
+        // Wait for all elevators to complete their orders
+        await Task.WhenAll(tasks);
+        hangarComponent.ClearSelectedAircraft();
+        hangarComponent.SetOrderInProgress(false);
+        await InvokeAsync(() => StateHasChanged());
     }
 
+    // TODO: figure out why aircraft are removed from hanger too early on UI
     private async Task TransferAircraftViaElevator(TransferAircraftViaElevatorRequest request, AircraftElevator elevator)
     {
-        await elevator.TravelToLocation(request.Origin);
-        StateHasChanged();
-
-        foreach (var aircraft in request.AircraftList)
+        while (elevator.OrderedAircraftSerials.Count > 0)
         {
-            if (elevator.OrderedAircraftSerials.Contains(aircraft.Serial))
-            {
-                aircraft.SetStatus(AircraftStatus.InTransit);
+            await elevator.TravelToLocation(request.Origin);
+            StateHasChanged();
 
-                switch (request.Origin)
+            foreach (var aircraft in request.AircraftList)
+            {
+                if (elevator.OrderedAircraftSerials.Contains(aircraft.Serial))
+                {
+                    aircraft.SetStatus(AircraftStatus.InTransit);
+
+                    switch (request.Origin)
+                    {
+                        case ElevatorLocation.Hangar:
+                            await hangarComponent.RemoveAircraftFromHangar(aircraft);
+                            break;
+                        case ElevatorLocation.FlightDeck:
+                            await flightDeckComponent.RemoveAircraftFromFlightDeck(aircraft);
+                            break;
+                    }
+
+                    if (elevator.AircraftOnElevator.Count < elevator.Capacity)
+                    {
+                        elevator.OrderedAircraftSerials.Remove(aircraft.Serial);
+                        await elevator.LoadAircraftOnElevator(aircraft);
+                    }
+
+                    StateHasChanged();
+                }
+            }
+
+            await elevator.TravelToLocation(request.Destination);
+
+            StateHasChanged();
+
+            //todo: make this not stupid
+            while (elevator.AircraftOnElevator.Count > 0)
+            {
+                var aircraft = elevator.AircraftOnElevator[0];
+
+                switch (elevator.Location)
                 {
                     case ElevatorLocation.Hangar:
-                        await hangarComponent.RemoveAircraftFromHangar(aircraft);
+                        await hangarComponent.ReceiveAircraftFromElevator(aircraft);
                         break;
                     case ElevatorLocation.FlightDeck:
-                        await flightDeckComponent.RemoveAircraftFromFlightDeck(aircraft);
+                        await flightDeckComponent.ReceiveAircraftFromElevator(aircraft);
                         break;
                 }
 
-                await elevator.LoadAircraftOnElevator(aircraft);
-                StateHasChanged();
+                await elevator.UnloadAircraftFromElevator(aircraft);
+                aircraft.SetStatus(AircraftStatus.Idle);
             }
         }
-
-        await elevator.TravelToLocation(request.Destination);
-
-        StateHasChanged();
-
-        //todo: make this not stupid
-        while (elevator.AircraftOnElevator.Count > 0)
-        {
-            var aircraft = elevator.AircraftOnElevator[0];
-
-            switch (elevator.Location)
-            {
-                case ElevatorLocation.Hangar:
-                    await hangarComponent.ReceiveAircraftFromElevator(aircraft);
-                    break;
-                case ElevatorLocation.FlightDeck:
-                    await flightDeckComponent.ReceiveAircraftFromElevator(aircraft);
-                    break;
-            }
-
-            await elevator.UnloadAircraftFromElevator(aircraft);
-            aircraft.SetStatus(AircraftStatus.Idle);
-        }
-
-        elevator.OrderedAircraftSerials.Clear();
     }
 
     //private AircraftElevator? DetermineBestElevator(TransferAircraftViaElevatorRequest request)
