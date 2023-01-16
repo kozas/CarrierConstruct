@@ -79,7 +79,6 @@ public partial class AirOpsPage
         await InvokeAsync(() => StateHasChanged());
     }
 
-    // TODO: figure out why aircraft are removed from hanger too early on UI
     private async Task TransferAircraftViaElevator(TransferAircraftViaElevatorRequest request, AircraftElevator elevator)
     {
         while (elevator.OrderedAircraftSerials.Count > 0)

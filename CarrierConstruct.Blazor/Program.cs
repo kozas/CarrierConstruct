@@ -1,6 +1,4 @@
 using CarrierConstruct.Blazor;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Hosting.StaticWebAssets;
 using MudBlazor.Services;
 
@@ -25,11 +23,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
