@@ -93,18 +93,18 @@ public partial class AirOpsPage
                 {
                     aircraft.SetStatus(AircraftStatus.InTransit);
 
-                    switch (request.Origin)
-                    {
-                        case ElevatorLocation.Hangar:
-                            await hangarComponent.RemoveAircraftFromHangar(aircraft);
-                            break;
-                        case ElevatorLocation.FlightDeck:
-                            await flightDeckComponent.RemoveAircraftFromFlightDeck(aircraft);
-                            break;
-                    }
-
                     if (elevator.AircraftOnElevator.Count < elevator.Capacity)
                     {
+                        switch (request.Origin)
+                        {
+                            case ElevatorLocation.Hangar:
+                                await hangarComponent.RemoveAircraftFromHangar(aircraft);
+                                break;
+                            case ElevatorLocation.FlightDeck:
+                                await flightDeckComponent.RemoveAircraftFromFlightDeck(aircraft);
+                                break;
+                        }
+
                         elevator.OrderedAircraftSerials.Remove(aircraft.Serial);
                         await elevator.LoadAircraftOnElevator(aircraft);
                     }
