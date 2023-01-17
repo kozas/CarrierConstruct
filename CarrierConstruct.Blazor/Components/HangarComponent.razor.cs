@@ -11,8 +11,8 @@ namespace CarrierConstruct.Blazor.Components;
 public partial class HangarComponent
 {
     public List<IAircraft> AircraftInHangar;
-    private List<IAircraft> selectedAircraft;
     private bool orderInProgress = false;
+    private List<IAircraft> selectedAircraft;
 
     [Parameter]
     public EventCallback<TransferAircraftViaElevatorRequest> OnAircraftOrderedToFlightDeck { get; set; }
@@ -29,6 +29,16 @@ public partial class HangarComponent
     {
         AircraftInHangar.Remove(aircraft);
         StateHasChanged();
+    }
+
+    public void SetOrderInProgress(bool isInProgress)
+    {
+        orderInProgress = isInProgress;
+    }
+
+    public void ClearSelectedAircraft()
+    {
+        selectedAircraft.Clear();
     }
 
     protected override async Task OnInitializedAsync()
@@ -48,8 +58,6 @@ public partial class HangarComponent
 
         var transferRequest = new TransferAircraftViaElevatorRequest(selectedAircraft, ElevatorLocation.Hangar, ElevatorLocation.FlightDeck);
         await OnAircraftOrderedToFlightDeck.InvokeAsync(transferRequest);
-
-        //selectedAircraft.Clear();
     }
 
     private void SelectAircraft(MouseEventArgs e, IAircraft aircraft)
@@ -79,15 +87,5 @@ public partial class HangarComponent
         AircraftInHangar.Add(new Hornet(100015, 403));
         AircraftInHangar.Add(new Hornet(100016, 404));
         AircraftInHangar.Add(new Hornet(100017, 405));
-    }
-
-    public void SetOrderInProgress(bool isInProgress)
-    {
-        orderInProgress = isInProgress;
-    }
-
-    public void ClearSelectedAircraft()
-    {
-        selectedAircraft.Clear();
     }
 }

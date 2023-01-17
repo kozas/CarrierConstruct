@@ -35,7 +35,9 @@ public partial class AirOpsPage
 
     private async void ProcessAircraftTransferRequest(TransferAircraftViaElevatorRequest request)
     {
+        //TODO: conditional or combine
         hangarComponent.SetOrderInProgress(true);
+        flightDeckComponent.SetOrderInProgress(true);
 
         var assignedAircraftSerials = 0;
         var assignedElevators = new List<AircraftElevator>();
@@ -74,8 +76,13 @@ public partial class AirOpsPage
 
         // Wait for all elevators to complete their orders
         await Task.WhenAll(tasks);
+
+        //TODO: Conditional or combine
         hangarComponent.ClearSelectedAircraft();
+        flightDeckComponent.ClearSelectedAircraft();
         hangarComponent.SetOrderInProgress(false);
+        flightDeckComponent.SetOrderInProgress(false);
+
         await InvokeAsync(() => StateHasChanged());
     }
 

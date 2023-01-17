@@ -5,51 +5,76 @@ using CarrierConstruct.Blazor.Models.Requests;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace CarrierConstruct.Blazor.Components
+namespace CarrierConstruct.Blazor.Components;
+
+public partial class FlightDeckComponent
 {
-    public partial class FlightDeckComponent
+    public List<IAircraft> AircraftOnFlightDeck;
+    private bool orderInProgress = false;
+    private List<IAircraft> selectedAircraft;
+
+    [Parameter]
+    public EventCallback<TransferAircraftViaElevatorRequest> OnAircraftOrderedToHangar { get; set; }
+
+    //TODO: Make Generic?
+    public async Task ReceiveAircraftFromElevator(IAircraft aircraft)
     {
-        [Parameter]
-        public EventCallback<TransferAircraftViaElevatorRequest> OnAircraftOrderedToHangar { get; set; }
+        AircraftOnFlightDeck.Add(aircraft);
+        StateHasChanged();
+    }
 
-        public List<IAircraft> AircraftOnFlightDeck;
+    //TODO: Make Generic?
+    public async Task RemoveAircraftFromFlightDeck(IAircraft aircraft)
+    {
+        AircraftOnFlightDeck.Remove(aircraft);
+        StateHasChanged();
+    }
 
-        protected override void OnInitialized()
+    public void SetOrderInProgress(bool isInProgress)
+    {
+        orderInProgress = isInProgress;
+    }
+
+    public void ClearSelectedAircraft()
+    {
+        selectedAircraft.Clear();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        AircraftOnFlightDeck = new List<IAircraft>();
+        selectedAircraft = new List<IAircraft>();
+
+        await LoadAircraftList();
+    }
+
+    private async Task OrderSelectedAircraftToHangar()
+    {
+        if (selectedAircraft.Count == 0)
         {
-            AircraftOnFlightDeck = new List<IAircraft>();
-
-            AircraftOnFlightDeck.Add(new Intruder(100001, 201));
-            AircraftOnFlightDeck.Add(new Intruder(100002, 202));
-            AircraftOnFlightDeck.Add(new Intruder(100003, 203));
+            return;
         }
 
-        //TODO: Make Generic?
-        public async Task ReceiveAircraftFromElevator(IAircraft aircraft)
+        var transferRequest = new TransferAircraftViaElevatorRequest(selectedAircraft, ElevatorLocation.FlightDeck, ElevatorLocation.Hangar);
+        await OnAircraftOrderedToHangar.InvokeAsync(transferRequest);
+    }
+
+    private void SelectAircraft(MouseEventArgs e, IAircraft aircraft)
+    {
+        if (selectedAircraft.Contains(aircraft))
         {
-            //await Task.Delay(3000);
-            AircraftOnFlightDeck.Add(aircraft);
-            StateHasChanged();
+            selectedAircraft.Remove(aircraft);
         }
-
-        //TODO: Make Generic?
-        public async Task RemoveAircraftFromFlightDeck(IAircraft aircraft)
+        else
         {
-            //await Task.Delay(1000);
-            AircraftOnFlightDeck.Remove(aircraft);
-            StateHasChanged();
+            selectedAircraft.Add(aircraft);
         }
+    }
 
-        //TODO: Make Generic?
-        //private async Task OrderAircraftToHangar(MouseEventArgs e, IAircraft aircraft)
-        //{
-        //    var aircraftList = new List<IAircraft>();
-        //    aircraftList.Add(aircraft);
-
-        //    var transferRequest = new TransferAircraftViaElevatorRequest(aircraftList, ElevatorLocation.FlightDeck, ElevatorLocation.Hangar);
-
-        //    await OnAircraftOrderedToHangar.InvokeAsync(transferRequest);
-        //}
-
-
+    private async Task LoadAircraftList()
+    {
+        AircraftOnFlightDeck.Add(new Intruder(100001, 201));
+        AircraftOnFlightDeck.Add(new Intruder(100002, 202));
+        AircraftOnFlightDeck.Add(new Intruder(100003, 203));
     }
 }
