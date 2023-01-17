@@ -40,15 +40,6 @@ C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\Carrie
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\CarrierConstruct.Blazor.runtimeconfig.json
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\CarrierConstruct.Blazor.dll
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\CarrierConstruct.Blazor.pdb
-C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
-C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\Microsoft.AspNetCore.Components.dll
-C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Forms.dll
-C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Web.dll
-C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
-C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\Microsoft.JSInterop.dll
-C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\MudBlazor.dll
-C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\bin\Debug\net6.0\System.IO.Pipelines.dll
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\CarrierConstruct.Blazor.csproj.AssemblyReference.cache
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\CarrierConstruct.Blazor.GeneratedMSBuildEditorConfig.editorconfig
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\CarrierConstruct.Blazor.AssemblyInfoInputs.cache
@@ -60,7 +51,6 @@ C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\Carrie
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\staticwebassets.build.json
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\staticwebassets.development.json
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\scopedcss\bundle\CarrierConstruct.Blazor.styles.css
-C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\CarrierConstruct.Blazor.csproj.CopyComplete
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\CarrierConstruct.Blazor.dll
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\refint\CarrierConstruct.Blazor.dll
 C:\Repositories\CarrierConstruct\CarrierConstruct.Blazor\obj\Debug\net6.0\CarrierConstruct.Blazor.pdb

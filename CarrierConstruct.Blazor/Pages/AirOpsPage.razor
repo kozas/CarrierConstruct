@@ -1,18 +1,17 @@
 ﻿@page "/"
 @using CarrierConstruct.Blazor.Components
 
-<MudContainer>
-    <MudText Typo="Typo.h4">Air Ops</MudText>
+    <h3>Air Ops</h3>
 
     <FlightDeckComponent @ref="flightDeckComponent"
                          OnAircraftOrderedToHangar="ProcessAircraftTransferRequest"/>
     
-    <MudDivider Class="my-4" />
+    <hr />
 
-    <div class="d-flex">
+    <div>
         @foreach (var elevator in aircraftElevators)
         {
-            <MudPaper Class="pa-6 ma-6 justify-center" Elevation="3">
+            <div>
                 
                 @*<MudPaper Height="40px;">
                     @if (elevator.isLoading)
@@ -22,41 +21,40 @@
                     }
                 </MudPaper> *@
 
-                <MudText Typo="Typo.subtitle2">Elevator @elevator.ElevatorNumber</MudText>
-                <div class="d-flex">
-                    <MudText Typo="Typo.subtitle2">Location:</MudText>
-                    <MudText Typo="Typo.body1">@elevator.Location</MudText>
+                <p>Elevator @elevator.ElevatorNumber</p>
+                <div>
+                    <p>Location:</p>
+                    <p>@elevator.Location</p>
                 </div>
-                <MudText Typo="Typo.subtitle2">Aircraft:</MudText>
+                <p>Aircraft:</p>
                 @if (elevator.AircraftOnElevator == null)
                 {
-                    <MudText Typo="Typo.body1">None</MudText>
+                    <p>None</p>
                 }
                 else
                 {
                     @foreach (var aircraft in elevator.AircraftOnElevator)
                     {
-                        <MudText Typo="Typo.body1">@aircraft.Name</MudText>
-                        <MudText Typo="Typo.body1">@aircraft.Modex</MudText>
+                        <p>@aircraft.Name</p>
+                        <p>@aircraft.Modex</p>
                     }
                 }
 
-                <MudText Typo="Typo.subtitle2">Assigned Serials:</MudText>
+                <p>Assigned Serials:</p>
                 @foreach (var serial in elevator.OrderedAircraftSerials)
                 {
-                    <MudText Typo="Typo.body1">@serial</MudText>
+                    <p>@serial</p>
                 }
 
-            </MudPaper>
+            </div>
         }
     </div>
         
-    <MudDivider Class="my-4" />
+    <hr />
 
     <HangarComponent @ref="hangarComponent" 
                      OnAircraftOrderedToFlightDeck="ProcessAircraftTransferRequest"/>
         
            
-</MudContainer>
 
 

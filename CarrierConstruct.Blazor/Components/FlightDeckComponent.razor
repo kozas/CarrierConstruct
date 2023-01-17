@@ -1,9 +1,9 @@
 ﻿@using CarrierConstruct.Blazor.Components.UI
 @using CarrierConstruct.Blazor.Interfaces
 
-<MudText Typo="Typo.h6">Flight Deck</MudText>
+<h3>Flight Deck</h3>
 
-<MudPaper Class="d-flex flex-wrap pa-4" MaxWidth="1200px">
+<div>
     @foreach (var aircraft in AircraftOnFlightDeck)
     {
         <AircraftCardComponent Aircraft="aircraft" 
@@ -11,15 +11,11 @@
                                ClickDisabled="orderInProgress"
                                IsSelected="selectedAircraft.Contains(aircraft)"/>
     }
-</MudPaper>
+</div>
 
-<MudButton Variant="Variant.Filled"
-           Color="Color.Primary"
-           FullWidth="true"
-           OnClick="OrderSelectedAircraftToHangar"
-           Disabled="orderInProgress || selectedAircraft.Count == 0">
+<button @onclick="OrderSelectedAircraftToHangar">
     Order to Hangar
-</MudButton>
+</button>
 
 <div>
     <p>Selected Aircraft:</p>
