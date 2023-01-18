@@ -8,12 +8,14 @@
     ".NETCoreApp,Version=v6.0": {
       "CarrierConstruct.API/1.0.0": {
         "dependencies": {
+          "BuildWebCompiler2022": "1.14.10",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
           "CarrierConstruct.API.dll": {}
         }
       },
+      "BuildWebCompiler2022/1.14.10": {},
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {},
       "Microsoft.OpenApi/1.2.3": {
         "runtime": {
@@ -68,6 +70,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BuildWebCompiler2022/1.14.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K6DuYLk2vB1H35DdAyqaqYkAOSTRcB6rxaPIyL1T0k0cOx70Jm4QKav7JzJx1+6KoltvXlM4oCtmgRbm2F4jhw==",
+      "path": "buildwebcompiler2022/1.14.10",
+      "hashPath": "buildwebcompiler2022.1.14.10.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
       "type": "package",

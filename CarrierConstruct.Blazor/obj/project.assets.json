@@ -1,11 +1,44 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "BuildWebCompiler2022/1.14.10": {
+        "type": "package",
+        "build": {
+          "build/BuildWebCompiler2022.targets": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "BuildWebCompiler2022/1.14.10": {
+      "sha512": "K6DuYLk2vB1H35DdAyqaqYkAOSTRcB6rxaPIyL1T0k0cOx70Jm4QKav7JzJx1+6KoltvXlM4oCtmgRbm2F4jhw==",
+      "type": "package",
+      "path": "buildwebcompiler2022/1.14.10",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/BuildWebCompiler2022.targets",
+        "buildwebcompiler2022.1.14.10.nupkg.sha512",
+        "buildwebcompiler2022.nuspec",
+        "tools/net4.8/NUglify.dll",
+        "tools/net4.8/Newtonsoft.Json.dll",
+        "tools/net4.8/WebCompiler.exe",
+        "tools/netcoreapp3.1/NUglify.dll",
+        "tools/netcoreapp3.1/Newtonsoft.Json.dll",
+        "tools/netcoreapp3.1/WebCompiler.dll",
+        "tools/netcoreapp3.1/WebCompiler.runtimeconfig.json",
+        "tools/netstandard2.1/NUglify.dll",
+        "tools/netstandard2.1/Newtonsoft.Json.dll",
+        "tools/netstandard2.1/WebCompiler.dll"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "BuildWebCompiler2022 >= 1.14.10"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\stevek\\.nuget\\packages\\": {},
@@ -54,6 +87,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "BuildWebCompiler2022": {
+            "target": "Package",
+            "version": "[1.14.10, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

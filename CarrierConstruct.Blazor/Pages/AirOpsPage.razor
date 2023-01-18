@@ -1,17 +1,17 @@
 ﻿@page "/"
 @using CarrierConstruct.Blazor.Components
 
-    <h3>Air Ops</h3>
+    <p class="cc-h1">Air Ops</p>
 
     <FlightDeckComponent @ref="flightDeckComponent"
                          OnAircraftOrderedToHangar="ProcessAircraftTransferRequest"/>
     
     <hr />
 
-    <div>
+    <div class="cc-elevator-container">
         @foreach (var elevator in aircraftElevators)
         {
-            <div>
+            <div class="cc-elevator-card">
                 
                 @*<MudPaper Height="40px;">
                     @if (elevator.isLoading)

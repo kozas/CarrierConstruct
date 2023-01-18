@@ -3,7 +3,7 @@
 @using CarrierConstruct.Blazor.Interfaces
 @using System.Linq
 
-<h3>Hangar</h3>
+<p class="cc-h2">Hangar</p>
     
 <div>
     @foreach (var aircraft in AircraftInHangar)
@@ -15,7 +15,7 @@
     }
 </div>
     
-<button @onclick="OrderSelectedAircraftToFlightDeck">
+<button @onclick="OrderSelectedAircraftToFlightDeck" class="cc-button">
     Order to Flight Deck
 </button>
     

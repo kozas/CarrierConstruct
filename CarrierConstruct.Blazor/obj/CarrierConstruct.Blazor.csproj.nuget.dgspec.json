@@ -46,6 +46,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "BuildWebCompiler2022": {
+              "target": "Package",
+              "version": "[1.14.10, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

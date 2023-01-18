@@ -1,7 +1,7 @@
 ﻿@using CarrierConstruct.Blazor.Components.UI
 @using CarrierConstruct.Blazor.Interfaces
 
-<h3>Flight Deck</h3>
+<p class="cc-h2">Flight Deck</p>
 
 <div>
     @foreach (var aircraft in AircraftOnFlightDeck)
@@ -13,7 +13,7 @@
     }
 </div>
 
-<button @onclick="OrderSelectedAircraftToHangar">
+<button @onclick="OrderSelectedAircraftToHangar" class="cc-button">
     Order to Hangar
 </button>
 

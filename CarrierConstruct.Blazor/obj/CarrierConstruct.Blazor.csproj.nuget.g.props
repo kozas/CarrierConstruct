@@ -14,4 +14,7 @@
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
     <SourceRoot Include="C:\Program Files (x86)\Progress\ToolboxNuGetPackages\" />
   </ItemGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgBuildWebCompiler2022 Condition=" '$(PkgBuildWebCompiler2022)' == '' ">C:\Users\stevek\.nuget\packages\buildwebcompiler2022\1.14.10</PkgBuildWebCompiler2022>
+  </PropertyGroup>
 </Project>

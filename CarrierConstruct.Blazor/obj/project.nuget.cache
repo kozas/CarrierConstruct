@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "NZexnjhe56SVEpvtECM8oi0/YQY0ifw7nKTJVJ0zyex/AousdaeoeZC1D5GA3KUHLBruO/C33V2Ff8EvqyNFrg==",
+  "dgSpecHash": "F8RGuVI1K1+qCR9EjbaT3/1ov6wiseuAp5apzYtJRJdxVmcPPyaG+HnCA4LALf7ISaOuhOoNlu06mAYayRr20g==",
   "success": true,
   "projectFilePath": "C:\\Repositories\\CarrierConstruct\\CarrierConstruct.Blazor\\CarrierConstruct.Blazor.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\stevek\\.nuget\\packages\\buildwebcompiler2022\\1.14.10\\buildwebcompiler2022.1.14.10.nupkg.sha512"
+  ],
   "logs": []
 }
