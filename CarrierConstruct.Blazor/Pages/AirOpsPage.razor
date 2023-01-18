@@ -6,7 +6,7 @@
     <FlightDeckComponent @ref="flightDeckComponent"
                          OnAircraftOrderedToHangar="ProcessAircraftTransferRequest"/>
     
-    <hr />
+    <hr class="cc-divider"/>
 
     <div class="cc-elevator-container">
         @foreach (var elevator in aircraftElevators)
@@ -50,7 +50,7 @@
         }
     </div>
         
-    <hr />
+    <hr class="cc-divider"/>
 
     <HangarComponent @ref="hangarComponent" 
                      OnAircraftOrderedToFlightDeck="ProcessAircraftTransferRequest"/>
