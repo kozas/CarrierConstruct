@@ -1,39 +1,33 @@
 ﻿@using CarrierConstruct.Blazor.Interfaces
 
-<MudButton OnClick="HandleClick" Disabled="ClickDisabled" Class="pa-0 ma-0 rounded-lg">
-    <MudPaper Class="ma-2 rounded-lg" Elevation="6" Width="300px">
+<button @onclick="HandleClick" class="cc-aircraft-card">
         
         @if (IsSelected)
         {
-            <div class="d-flex flex-auto justify-space-between mud-theme-success px-4 py-2 rounded-t-lg">
-                <div class="d-flex">
-                    <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Title="Favorite" Class="mr-2"/>
-                    <MudText Typo="Typo.body2">@Aircraft.Designation @Aircraft.Name</MudText>
-                </div>
-                <MudText Typo="Typo.body2">@Aircraft.Role</MudText>
+            <div>
+                @*<MudIcon Icon="@Icons.Material.Filled.CheckCircle" Title="Favorite" Class="mr-2"/>*@
+                <p>@Aircraft.Designation @Aircraft.Name</p>
+                <p>@Aircraft.Role</p>
             </div>
         }
         else
         {
-            <div class="d-flex flex-auto justify-space-between mud-theme-primary px-4 py-2 rounded-t-lg">
-                <div class="d-flex align-content-center">
-                    <MudIcon Icon="@Icons.Material.Filled.Circle" Title="Favorite" Class="mr-2"/>
-                    <MudText Typo="Typo.body2">@Aircraft.Designation @Aircraft.Name</MudText>
-                </div>
-                <MudText Typo="Typo.body2">@Aircraft.Role</MudText>
+            <div>
+                @*<MudIcon Icon="@Icons.Material.Filled.Circle" Title="Favorite" Class="mr-2"/>*@
+                <p>@Aircraft.Designation @Aircraft.Name</p>
+                <p>@Aircraft.Role</p>
             </div>
         }
 
-        <div class="pa-4">
-            <MudText Typo="Typo.body1">[ SQUADRON ] @Aircraft.Modex</MudText>
-            <MudText Typo="Typo.body1">Serial: @Aircraft.Serial</MudText>
+        <div>
+            <p>[ SQUADRON ] @Aircraft.Modex</p>
+            <p>Serial: @Aircraft.Serial</p>
         </div>
         
         @*TODO: Implement aircraft status*@
         @*<MudText Typo="Typo.caption">Status: @Aircraft.Status</MudText>*@
 
-    </MudPaper>
-</MudButton>
+</button>
 
 @code {
     [Parameter]
