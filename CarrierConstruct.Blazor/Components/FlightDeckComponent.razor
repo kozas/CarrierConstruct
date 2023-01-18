@@ -3,7 +3,7 @@
 
 <p class="cc-h2">Flight Deck</p>
 
-<div>
+<div class="cc-aircraft-container">
     @foreach (var aircraft in AircraftOnFlightDeck)
     {
         <AircraftCardComponent Aircraft="aircraft" 
@@ -17,10 +17,10 @@
     Order to Hangar
 </button>
 
-<div>
+@*<div>
     <p>Selected Aircraft:</p>
     @foreach (IAircraft a in selectedAircraft)
     {
         <p>@a.Name - @a.Modex</p>
     }
-</div>
+</div>*@

@@ -6,11 +6,12 @@
     <FlightDeckComponent @ref="flightDeckComponent"
                          OnAircraftOrderedToHangar="ProcessAircraftTransferRequest"/>
     
-    <hr class="cc-divider"/>
+<hr class="cc-divider"/>
 
     <div class="cc-elevator-container">
         @foreach (var elevator in aircraftElevators)
         {
+            //TODO: build UI component
             <div class="cc-elevator-card">
                 
                 @*<MudPaper Height="40px;">
@@ -43,7 +44,7 @@
                 <p>Assigned Serials:</p>
                 @foreach (var serial in elevator.OrderedAircraftSerials)
                 {
-                    <p>@serial</p>
+                    <p class="cc-text-small">@serial</p>
                 }
 
             </div>

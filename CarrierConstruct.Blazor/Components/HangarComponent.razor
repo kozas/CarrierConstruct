@@ -3,9 +3,10 @@
 @using CarrierConstruct.Blazor.Interfaces
 @using System.Linq
 
+
 <p class="cc-h2">Hangar</p>
     
-<div>
+<div class="cc-aircraft-container">
     @foreach (var aircraft in AircraftInHangar)
     {
         <AircraftCardComponent Aircraft="aircraft" 
@@ -19,11 +20,11 @@
     Order to Flight Deck
 </button>
     
-<div>
+@*<div>
     <p>Selected Aircraft:</p>
     @foreach (IAircraft a in selectedAircraft)
     {
         <p>@a.Name - @a.Modex</p>
     }
-</div>
+</div>*@
     
