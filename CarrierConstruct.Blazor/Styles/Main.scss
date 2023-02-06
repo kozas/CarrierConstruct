@@ -15,7 +15,31 @@ html, page {
     font-family: 'Inconsolata', serif;
 }
 
-.cc-page-container{
+.cc-flight-deck-map-outside {
+    position: relative;
+    height: 500px;
+    width: 1000px;
+
+    -webkit-clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
+    clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
+
+    background: #AAC5BA;
+}
+
+.cc-flight-deck-map-inside {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+
+    -webkit-clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
+    clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
+
+    background-color: #1B2737;
+}
+
+.cc-page-container {
     display: flex;
     flex-direction: column;
     max-width: 2000px;
@@ -84,7 +108,7 @@ html, page {
         color: #FAFF70;
         border: 2px solid #FAFF70;
         /*background-color: #FAFF70;
-        color: #1B2737;*/
+    color: #1B2737;*/
     }
 }
 
@@ -118,7 +142,6 @@ html, page {
     padding: 0 12px;
 }
 
-
-/*warn FAFF70
+    /*warn FAFF70
 succ CCFF33
 err FF495C*/

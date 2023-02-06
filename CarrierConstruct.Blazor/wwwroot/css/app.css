@@ -22,6 +22,26 @@ html, page {
   font-family: "Inconsolata", serif;
 }
 
+.cc-flight-deck-map-outside {
+  position: relative;
+  height: 500px;
+  width: 1000px;
+  -webkit-clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
+  clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
+  background: #AAC5BA;
+}
+
+.cc-flight-deck-map-inside {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  -webkit-clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
+  clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
+  background-color: #1B2737;
+}
+
 .cc-page-container {
   display: flex;
   flex-direction: column;

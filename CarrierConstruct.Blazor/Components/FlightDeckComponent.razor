@@ -3,19 +3,40 @@
 
 <p class="cc-h2">Flight Deck</p>
 
-<div class="cc-aircraft-container">
-    @foreach (var aircraft in AircraftOnFlightDeck)
+<div class="cc-flight-deck-map-outside">
+    <div class="cc-flight-deck-map-inside">
+
+    </div>
+</div>
+
+@*<div class="cc-aircraft-container">*@
+    @*@foreach (var aircraft in AircraftOnFlightDeck)
     {
         <AircraftCardComponent Aircraft="aircraft" 
                                OnAircraftCardClicked="(args) => SelectAircraft(args, aircraft)" 
                                ClickDisabled="orderInProgress"
                                IsSelected="selectedAircraft.Contains(aircraft)"/>
-    }
-</div>
+    }*@
+    
+    @*@foreach (var parkingSpace in FlightDeckMap)
+    {
+        if (parkingSpace.Value == null)
+        {
+            <p>Empty</p>
+        }
+        else
+        {
+            <p>@parkingSpace.Value.Designation</p>
+        }
 
-<button @onclick="OrderSelectedAircraftToHangar" class="cc-button">
+
+    }*@
+
+@*</div>*@
+
+@*<button @onclick="OrderSelectedAircraftToHangar" class="cc-button">
     Order to Hangar
-</button>
+</button>*@
 
 @*<div>
     <p>Selected Aircraft:</p>
