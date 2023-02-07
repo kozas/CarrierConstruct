@@ -1,51 +1,74 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Inconsolata');
-
 @import "Theme.scss";
+@import "Typography.scss";
+@import "FlightDeckMap.scss";
 
-html, page {
-    top: 0;
-    left: 0;
-    width: 100%;
+html {
     height: 100%;
-    margin: 0;
-    padding: 0;
     background-color: #1B2737;
     color: #AAC5BA;
-    /*font-family: 'Major Mono Display', serif;*/
     font-family: 'Inconsolata', serif;
+
+    border: 1px solid red;
 }
 
-.cc-flight-deck-map-outside {
-    position: relative;
-    height: 500px;
-    width: 1000px;
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
 
-    -webkit-clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
-    clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
-
-    background: #AAC5BA;
+    border: 1px solid pink;
 }
 
-.cc-flight-deck-map-inside {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
+.cc-page-wrapper {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    -webkit-clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
-    clip-path: polygon(12% 33%, 14% 21%, 55% 21%, 69% 18%, 78% 32%, 100% 38%, 100% 60%, 78% 65%, 69% 77%, 12% 77%, 2% 71%, 2% 36%);
-
-    background-color: #1B2737;
+    border: 2px solid green;
 }
 
-.cc-page-container {
+.cc-air-ops-page-wrapper {
+    display: flex;
+    /*justify-content: space-between;*/
+    /*max-width: 2000px;*/
+
+    border: 2px solid yellow;
+}
+
+
+
+.cc-air-ops-content {
     display: flex;
     flex-direction: column;
-    max-width: 2000px;
-    /*justify-content: center;*/
+    justify-content: center;
     align-items: center;
+    max-width: 2000px;
+    padding: 16px;
+
+    border: 2px solid red;
 }
+
+.cc-air-ops-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid #AAC5BA;
+    width: 300px;
+
+    div {
+        flex: auto;
+        padding: 8px;
+
+        border: 2px solid purple;
+        /*height: auto;*/
+    }
+}
+
+
 
 .cc-aircraft-container {
     display: flex;
@@ -117,23 +140,6 @@ html, page {
     min-width: 500px;
     max-width: 2000px;
     border-top: 2px dashed #AAC5BA;
-}
-
-.cc-h1 {
-    font-family: 'Major Mono Display', serif;
-    font-size: 36px;
-    font-weight: 800;
-}
-
-.cc-h2 {
-    font-family: 'Major Mono Display', serif;
-    font-size: 24px;
-}
-
-
-.cc-text-small {
-    font-size: 12px;
-    color: #5B8674;
 }
 
 .cc-lr-box {

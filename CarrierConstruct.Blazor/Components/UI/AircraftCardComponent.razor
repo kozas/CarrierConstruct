@@ -1,6 +1,7 @@
 ﻿@using CarrierConstruct.Blazor.Interfaces
 
-<button @onclick="HandleClick" class="cc-aircraft-card">
+@*<button @onclick="HandleClick" class="cc-aircraft-card">*@
+<div class="cc-aircraft-card" @onmouseover="HandleCardHover">
         
         @if (IsSelected)
         {
@@ -24,8 +25,8 @@
         
         @*TODO: Implement aircraft status*@
         @*<MudText Typo="Typo.caption">Status: @Aircraft.Status</MudText>*@
-
-</button>
+    </div>
+@*</button>*@
 
 @code {
     [Parameter]
@@ -40,8 +41,16 @@
     [Parameter]
     public EventCallback<MouseEventArgs> OnAircraftCardClicked { get; set; }
 
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnAircraftCardHover { get; set; }
+
     public void HandleClick()
     {
         OnAircraftCardClicked.InvokeAsync();
+    }
+
+    public void HandleCardHover()
+    {
+        OnAircraftCardHover.InvokeAsync();
     }
 }

@@ -13,10 +13,14 @@ public partial class FlightDeckComponent
     private bool orderInProgress = false;
     private List<IAircraft> selectedAircraft;
     
-    public Dictionary<int, IAircraft>? FlightDeckMap;
+    //public Dictionary<int, IAircraft>? FlightDeckMap;
 
     [Parameter]
     public EventCallback<TransferAircraftViaElevatorRequest> OnAircraftOrderedToHangar { get; set; }
+
+    [Parameter]
+    public EventCallback<IAircraft> OnAircraftInformationDispatched { get; set; }
+
 
     //TODO: Make Generic?
     public async Task ReceiveAircraftFromElevator(IAircraft aircraft)
@@ -44,9 +48,9 @@ public partial class FlightDeckComponent
 
     protected override async Task OnInitializedAsync()
     {
-        //AircraftOnFlightDeck = new List<IAircraft>();
+        AircraftOnFlightDeck = new List<IAircraft>();
 
-        FlightDeckMap = new Dictionary<int, IAircraft>();
+        //FlightDeckMap = new Dictionary<int, IAircraft>();
         selectedAircraft = new List<IAircraft>();
 
         await LoadAircraftList();
@@ -75,16 +79,21 @@ public partial class FlightDeckComponent
         }
     }
 
+    private void DisplayAircraftInformation(MouseEventArgs e, IAircraft aircraft)
+    {
+        OnAircraftInformationDispatched.InvokeAsync(aircraft);
+    }
+
     private async Task LoadAircraftList()
     {
-        //AircraftOnFlightDeck.Add(new Intruder(100001, 201));
-        //AircraftOnFlightDeck.Add(new Intruder(100002, 202));
-        //AircraftOnFlightDeck.Add(new Intruder(100003, 203));
+        AircraftOnFlightDeck.Add(new Intruder(100001, 201));
+        AircraftOnFlightDeck.Add(new Intruder(100002, 202));
+        AircraftOnFlightDeck.Add(new Intruder(100003, 203));
 
-        FlightDeckMap.Add(1, new Intruder(100001, 201));
-        FlightDeckMap.Add(2, new Intruder(100002, 202));
-        FlightDeckMap.Add(3, new Intruder(100003, 203));
-        FlightDeckMap.Add(4, null);
-        FlightDeckMap.Add(5, null);
+        //FlightDeckMap.Add(1, new Intruder(100001, 201));
+        //FlightDeckMap.Add(2, new Intruder(100002, 202));
+        //FlightDeckMap.Add(3, new Intruder(100003, 203));
+        //FlightDeckMap.Add(4, null);
+        //FlightDeckMap.Add(5, null);
     }
 }

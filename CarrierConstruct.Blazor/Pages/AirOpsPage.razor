@@ -1,20 +1,24 @@
 ﻿@page "/"
 @using CarrierConstruct.Blazor.Components
 
-    <p class="cc-h1">Air Ops</p>
-
-    <FlightDeckComponent @ref="flightDeckComponent"
-                         OnAircraftOrderedToHangar="ProcessAircraftTransferRequest"/>
+<div class="cc-air-ops-page-wrapper">
     
-<hr class="cc-divider"/>
+    <div class="cc-air-ops-content">
+        <p class="cc-h1">Air Ops</p>
 
-    <div class="cc-elevator-container">
-        @foreach (var elevator in aircraftElevators)
-        {
-            //TODO: build UI component
-            <div class="cc-elevator-card">
+        <FlightDeckComponent @ref="flightDeckComponent"
+                             OnAircraftOrderedToHangar="ProcessAircraftTransferRequest"
+                             OnAircraftInformationDispatched="DisplayAircraftInformation"/>
+    
+        @*<hr class="cc-divider"/>*@
+
+        <div class="cc-elevator-container">
+            @foreach (var elevator in aircraftElevators)
+            {
+                //TODO: build UI component
+                <div class="cc-elevator-card">
                 
-                @*<MudPaper Height="40px;">
+                    @*<MudPaper Height="40px;">
                     @if (elevator.isLoading)
                     {
                         <MudProgressLinear Color="Color.Secondary" Indeterminate="true" Class="my-7"/>
@@ -22,40 +26,64 @@
                     }
                 </MudPaper> *@
 
-                <p>Elevator @elevator.ElevatorNumber</p>
-                <div>
-                    <p>Location:</p>
-                    <p>@elevator.Location</p>
-                </div>
-                <p>Aircraft:</p>
-                @if (elevator.AircraftOnElevator == null)
-                {
-                    <p>None</p>
-                }
-                else
-                {
-                    @foreach (var aircraft in elevator.AircraftOnElevator)
+                    <p>Elevator @elevator.ElevatorNumber</p>
+                    <div>
+                        <p>Location:</p>
+                        <p>@elevator.Location</p>
+                    </div>
+                    <p>Aircraft:</p>
+                    @if (elevator.AircraftOnElevator == null)
                     {
-                        <p>@aircraft.Name</p>
-                        <p>@aircraft.Modex</p>
+                        <p>None</p>
                     }
-                }
+                    else
+                    {
+                        @foreach (var aircraft in elevator.AircraftOnElevator)
+                        {
+                            <p>@aircraft.Name</p>
+                            <p>@aircraft.Modex</p>
+                        }
+                    }
 
-                <p>Assigned Serials:</p>
-                @foreach (var serial in elevator.OrderedAircraftSerials)
-                {
-                    <p class="cc-text-small">@serial</p>
-                }
+                    <p>Assigned Serials:</p>
+                    @foreach (var serial in elevator.OrderedAircraftSerials)
+                    {
+                        <p class="cc-text-small">@serial</p>
+                    }
 
-            </div>
-        }
+                </div>
+            }
+        </div>
+        
+        @*<hr class="cc-divider"/>*@
+
+        <HangarComponent @ref="hangarComponent" 
+                         OnAircraftOrderedToFlightDeck="ProcessAircraftTransferRequest"/>
     </div>
-        
-    <hr class="cc-divider"/>
+    
+    <div class="cc-air-ops-sidebar">
+        <div>
+            <p>Aircraft Info</p>
 
-    <HangarComponent @ref="hangarComponent" 
-                     OnAircraftOrderedToFlightDeck="ProcessAircraftTransferRequest"/>
-        
+            @if (hoveredAircraft is not null)
+            {
+                <p>@hoveredAircraft.Manufacturer</p>
+                <p>@hoveredAircraft.Designation @hoveredAircraft.Name</p>
+
+                <p>[SQUADRON] @hoveredAircraft.Modex</p>
+                <p>@hoveredAircraft.Serial</p>
+            }
+        </div>
+        <div>
+            <p>PLACEHOLDER</p>
+            <p>message log</p>
+        </div>
+    </div>
+
+</div>
+
+
+
            
 
 

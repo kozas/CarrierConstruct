@@ -3,20 +3,45 @@
 
 <p class="cc-h2">Flight Deck</p>
 
-<div class="cc-flight-deck-map-outside">
-    <div class="cc-flight-deck-map-inside">
+@*<div class="cc-flight-deck-outline-outer">
+    <div class="cc-flight-deck-outline-inner">
+        
+        <div class="cc-flight-deck-parking section-1">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+        </div>
+        
+        <div class="cc-flight-deck-parking section-2">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+        </div>
+        
+        <div class="cc-flight-deck-elevator elevator-1">
+
+        </div>
+        
+        <div class="cc-flight-deck-elevator elevator-2">
+
+        </div>
+        
+        <div class="cc-flight-deck-elevator elevator-3">
+
+        </div>
 
     </div>
-</div>
+</div>*@
 
-@*<div class="cc-aircraft-container">*@
-    @*@foreach (var aircraft in AircraftOnFlightDeck)
+<div class="cc-aircraft-container">
+    @foreach (var aircraft in AircraftOnFlightDeck)
     {
         <AircraftCardComponent Aircraft="aircraft" 
                                OnAircraftCardClicked="(args) => SelectAircraft(args, aircraft)" 
+                               OnAircraftCardHover="(args) => DisplayAircraftInformation(args, aircraft)" 
                                ClickDisabled="orderInProgress"
                                IsSelected="selectedAircraft.Contains(aircraft)"/>
-    }*@
+    }
     
     @*@foreach (var parkingSpace in FlightDeckMap)
     {
@@ -28,15 +53,13 @@
         {
             <p>@parkingSpace.Value.Designation</p>
         }
-
-
     }*@
 
-@*</div>*@
+</div>
 
-@*<button @onclick="OrderSelectedAircraftToHangar" class="cc-button">
+<button @onclick="OrderSelectedAircraftToHangar" class="cc-button">
     Order to Hangar
-</button>*@
+</button>
 
 @*<div>
     <p>Selected Aircraft:</p>

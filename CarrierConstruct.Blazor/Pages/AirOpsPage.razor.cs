@@ -14,6 +14,8 @@ public partial class AirOpsPage
     private FlightDeckComponent? flightDeckComponent;
     private HangarComponent? hangarComponent;
 
+    private IAircraft? hoveredAircraft;
+
     [Parameter]
     public EventCallback<List<IAircraft>> OnAircraftArrivedAtFlightDeck { get; set; }
 
@@ -142,6 +144,12 @@ public partial class AirOpsPage
                 aircraft.SetStatus(AircraftStatus.Idle);
             }
         }
+    }
+
+    private void DisplayAircraftInformation(IAircraft aircraft)
+    {
+        hoveredAircraft = aircraft;
+        StateHasChanged();
     }
 
     //private AircraftElevator? DetermineBestElevator(TransferAircraftViaElevatorRequest request)
