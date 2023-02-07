@@ -39,8 +39,6 @@ body {
     border: 2px solid yellow;
 }
 
-
-
 .cc-air-ops-content {
     display: flex;
     flex-direction: column;
@@ -68,8 +66,6 @@ body {
     }
 }
 
-
-
 .cc-aircraft-container {
     display: flex;
     flex-wrap: wrap;
@@ -77,28 +73,23 @@ body {
     max-width: 1500px;
 }
 
-.cc-aircraft-card {
+.cc-aircraft-chip {
+    height: 60px;
+    width: 60px;
+    margin: 8px;
+    padding: 0px;
     background-color: #1B2737;
     color: #AAC5BA;
-    border: 2px solid #AAC5BA;
-    /*padding: 18px;*/
-    padding: 0px;
     font-family: 'Inconsolata', serif;
-    width: 250px;
-    margin: 8px;
+    border: 2px solid #AAC5BA;
 
     &:hover {
-        font-weight: bold;
         color: #FAFF70;
+        font-weight: bold;
         border: 2px solid #FAFF70;
-        /*border: 6px solid #FAFF70;*/
     }
 
-    .cc-header-deselected {
-        /*background-color: gray;*/
-    }
-
-    .cc-header-selected {
+    .cc-chip-selected {
         background-color: #CCFF33;
         color: #1B2737;
     }

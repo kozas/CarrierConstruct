@@ -7,7 +7,9 @@
         Attack,
         MultiRole,
         Tanker,
-        Awacs,
+        AWACS,
+        EWAR,
+        ASW,
         Miscellaneous 
     }
 }

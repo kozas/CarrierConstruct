@@ -90,10 +90,12 @@ public partial class FlightDeckComponent
         AircraftOnFlightDeck.Add(new Intruder(100002, 202));
         AircraftOnFlightDeck.Add(new Intruder(100003, 203));
 
-        //FlightDeckMap.Add(1, new Intruder(100001, 201));
-        //FlightDeckMap.Add(2, new Intruder(100002, 202));
-        //FlightDeckMap.Add(3, new Intruder(100003, 203));
-        //FlightDeckMap.Add(4, null);
-        //FlightDeckMap.Add(5, null);
+        AircraftOnFlightDeck.Add(new Prowler(100005, 401));
+        AircraftOnFlightDeck.Add(new Prowler(100006, 402));
+        AircraftOnFlightDeck.Add(new Prowler(100007, 403));
+
+        AircraftOnFlightDeck.Add(new Hawkeye(100008, 501));
+        AircraftOnFlightDeck.Add(new Hawkeye(100009, 502));
+
     }
 }

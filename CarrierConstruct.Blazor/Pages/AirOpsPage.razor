@@ -58,7 +58,8 @@
         @*<hr class="cc-divider"/>*@
 
         <HangarComponent @ref="hangarComponent" 
-                         OnAircraftOrderedToFlightDeck="ProcessAircraftTransferRequest"/>
+                         OnAircraftOrderedToFlightDeck="ProcessAircraftTransferRequest"
+                         OnAircraftInformationDispatched="DisplayAircraftInformation"/>
     </div>
     
     <div class="cc-air-ops-sidebar">
@@ -67,6 +68,7 @@
 
             @if (hoveredAircraft is not null)
             {
+                <p>@hoveredAircraft.Role</p>
                 <p>@hoveredAircraft.Manufacturer</p>
                 <p>@hoveredAircraft.Designation @hoveredAircraft.Name</p>
 

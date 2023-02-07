@@ -36,9 +36,9 @@
 <div class="cc-aircraft-container">
     @foreach (var aircraft in AircraftOnFlightDeck)
     {
-        <AircraftCardComponent Aircraft="aircraft" 
-                               OnAircraftCardClicked="(args) => SelectAircraft(args, aircraft)" 
-                               OnAircraftCardHover="(args) => DisplayAircraftInformation(args, aircraft)" 
+        <AircraftChipComponent Aircraft="aircraft" 
+                               OnAircraftChipClicked="(args) => SelectAircraft(args, aircraft)" 
+                               OnAircraftChipHover="(args) => DisplayAircraftInformation(args, aircraft)" 
                                ClickDisabled="orderInProgress"
                                IsSelected="selectedAircraft.Contains(aircraft)"/>
     }

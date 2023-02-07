@@ -1,9 +1,27 @@
 ﻿@using CarrierConstruct.Blazor.Interfaces
 
 @*<button @onclick="HandleClick" class="cc-aircraft-card">*@
-<div class="cc-aircraft-card" @onmouseover="HandleCardHover">
+<button class="cc-aircraft-chip" 
+        @onclick="HandleChipClick" 
+        @onmouseover="HandleChipHover">
         
-        @if (IsSelected)
+    @if (IsSelected)
+    {
+        <div class="cc-chip-selected">
+            <div>@Aircraft.Designation</div>
+            <div>@Aircraft.Modex</div>
+        </div>
+    }
+    else
+    {
+        <div>
+            <div>@Aircraft.Designation</div>
+            <div>@Aircraft.Modex</div>
+        </div>
+    }
+
+
+    @*@if (IsSelected)
         {
             <div class="cc-lr-box cc-header-selected">
                 <p>@Aircraft.Designation @Aircraft.Name</p>
@@ -21,11 +39,9 @@
         <div>
             <p>[ SQUADRON ] @Aircraft.Modex</p>
             <p>Serial: @Aircraft.Serial</p>
-        </div>
+        </div>*@
         
-        @*TODO: Implement aircraft status*@
-        @*<MudText Typo="Typo.caption">Status: @Aircraft.Status</MudText>*@
-    </div>
+    </button>
 @*</button>*@
 
 @code {
@@ -39,18 +55,18 @@
     public bool IsSelected {get; set; }
 
     [Parameter]
-    public EventCallback<MouseEventArgs> OnAircraftCardClicked { get; set; }
+    public EventCallback<MouseEventArgs> OnAircraftChipClicked { get; set; }
 
     [Parameter]
-    public EventCallback<MouseEventArgs> OnAircraftCardHover { get; set; }
+    public EventCallback<MouseEventArgs> OnAircraftChipHover { get; set; }
 
-    public void HandleClick()
+    public void HandleChipClick()
     {
-        OnAircraftCardClicked.InvokeAsync();
+        OnAircraftChipClicked.InvokeAsync();
     }
 
-    public void HandleCardHover()
+    public void HandleChipHover()
     {
-        OnAircraftCardHover.InvokeAsync();
+        OnAircraftChipHover.InvokeAsync();
     }
 }

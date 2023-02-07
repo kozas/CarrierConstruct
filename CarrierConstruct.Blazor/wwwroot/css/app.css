@@ -148,26 +148,22 @@ body {
   max-width: 1500px;
 }
 
-.cc-aircraft-card {
+.cc-aircraft-chip {
+  height: 60px;
+  width: 60px;
+  margin: 8px;
+  padding: 0px;
   background-color: #1B2737;
   color: #AAC5BA;
-  border: 2px solid #AAC5BA;
-  /*padding: 18px;*/
-  padding: 0px;
   font-family: "Inconsolata", serif;
-  width: 250px;
-  margin: 8px;
+  border: 2px solid #AAC5BA;
 }
-.cc-aircraft-card:hover {
-  font-weight: bold;
+.cc-aircraft-chip:hover {
   color: #FAFF70;
+  font-weight: bold;
   border: 2px solid #FAFF70;
-  /*border: 6px solid #FAFF70;*/
 }
-.cc-aircraft-card .cc-header-deselected {
-  /*background-color: gray;*/
-}
-.cc-aircraft-card .cc-header-selected {
+.cc-aircraft-chip .cc-chip-selected {
   background-color: #CCFF33;
   color: #1B2737;
 }

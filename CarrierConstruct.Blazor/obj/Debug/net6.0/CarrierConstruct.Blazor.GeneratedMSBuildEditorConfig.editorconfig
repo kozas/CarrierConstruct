@@ -27,8 +27,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xIYW5nYXJDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Repositories/CarrierConstruct/CarrierConstruct.Blazor/Components/UI/AircraftCardComponent.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVSVxBaXJjcmFmdENhcmRDb21wb25lbnQucmF6b3I=
+[C:/Repositories/CarrierConstruct/CarrierConstruct.Blazor/Components/UI/AircraftChipComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVSVxBaXJjcmFmdENoaXBDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Repositories/CarrierConstruct/CarrierConstruct.Blazor/Pages/AirOpsPage.razor]
